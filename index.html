@@ -14,7 +14,7 @@
     body {
       margin: 0;
       height: 100%;
-      overflow: auto; /* スクロールを有効に */
+      overflow: hidden; /* 初期状態でスクロールを無効に */
     }
     .bg-video {
       position: fixed;
@@ -139,7 +139,7 @@
 
       contentDiv.appendChild(table);
       document.querySelector('.loader').style.zIndex = '-999999'; // ロード画面のz-indexを変更
-      document.body.style.overflow = 'auto'; // スクロールを有効に
+      document.body.style.overflow = 'hidden'; // スクロールを無効に
     }
 
     function displayText() {
@@ -157,6 +157,7 @@
       const video = document.querySelector('.bg-video');
       video.oncanplaythrough = function() {
         createTable(); // 動画が読み込まれたらテーブルを作成
+        document.body.style.overflow = 'auto'; // ロードが終わったらスクロールを有効に
       };
     }
   </script>
