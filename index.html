@@ -1,126 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-<title>アズマヒキガエルの生態</title>
-<style type="text/css">
-  @font-face {
-  font-family: 'akaina'; /* フォント名を定義 */
-  src: url('fonts/setofont.ttf') format('truetype'),   /* 次に試すフォーマット */
-       url('fonts/setofont-ex.ttf') format('truetype'); /* フォントファイルの場所 */
-  font-weight: normal; /* 通常の太さ */
-  font-style: normal; /* 通常のスタイル */
-}
-  body {
-    margin: 0;
-    height: 100%;
-    overflow: auto; /* スクロールを可能にする */
-  }
-  .bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
-  .content {
-    margin: 20px; /* マージンを追加 */
-  }
-  .img img {
-    opacity: 0.7; /* 画像を半透明にする */
-  }
-.text {
-  font-family: 'akaina', sans-serif; /* フォントの適用 */
-  background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
-  padding: 10px; /* 内側の余白 */
-  width: 50% !important;
-  height: 100px !important;
-  border-radius: 5px; /* 角を丸く */
-  font-weight: bold; /* 太字 */
-  text-align: left; /* 左揃え */
-  box-sizing: border-box; /* パディングを含めたサイズ */
-  overflow: hidden; /* オーバーフロー防止 */
-}
-
-
-  .color-red {
-    color: red; /* 赤色のクラス */
-  }
-  .highlight {
-     text-shadow: 0 0 10px #00f, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 70px #0ff, 0 0 80px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
-  }
-  .n{ display: block; /* ブロック要素にする */}
-</style>
-<script>
-  const links = {
-    "row1": { 
-      url: "https://www.youtube.com/watch?v=OMp9s9f4cnI", 
-      description: "<span class='n'><h3>君と出会えた奇跡 / ライフガード</h3></span><span class='n'>この曲は出会えたことに感謝していることを表しています。</span>君にというのは" 
-    },
-    "row2": { 
-      url: "https://www.youtube.com/watch?v=AkYCR-N9hbY", 
-      description: "繁殖期である２～３月頃に、アズマヒキガエルは<span class='highlight'>沼や池</span>を訪れます。" 
-    },
-    "row3": { 
-      url: "https://www.youtube.com/watch?v=i1jS16w7-18", 
-      description: "アズマヒキガエルの卵はヒモ状で、<span class='highlight'>数メートル</span>もあります。" 
-    },
-    "row4": { 
-      url: "https://www.youtube.com/watch?v=pMHAWqqdGXI", 
-      description: "アズマヒキガエルの生息地には<span class='highlight'>湿地帯</span>が多いです。" 
+  <meta charset="UTF-8">
+  <title>アズマヒキガエルの生態</title>
+  <style type="text/css">
+    @font-face {
+      font-family: 'akaina'; /* フォント名を定義 */
+      src: url('fonts/setofont.ttf') format('truetype'),   /* 次に試すフォーマット */
+           url('fonts/setofont-ex.ttf') format('truetype'); /* フォントファイルの場所 */
+      font-weight: normal; /* 通常の太さ */
+      font-style: normal; /* 通常のスタイル */
     }
-  };
-
-  function changeLink(id) {
-    const link = links[id];
-    if (link) {
-      window.open(link.url, '_blank'); // 新しいタブでリンク先を開く
+    body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden; /* スクロールを無効に */
     }
-  }
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .content {
+      margin: 20px; /* マージンを追加 */
+    }
+    .img img {
+      opacity: 0.7; /* 画像を半透明にする */
+    }
+    .text {
+      font-family: 'akaina', sans-serif; /* フォントの適用 */
+      background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
+      padding: 10px; /* 内側の余白 */
+      width: 50% !important;
+      height: 100px !important;
+      border-radius: 5px; /* 角を丸く */
+      font-weight: bold; /* 太字 */
+      text-align: left; /* 左揃え */
+      box-sizing: border-box; /* パディングを含めたサイズ */
+      overflow: hidden; /* オーバーフロー防止 */
+    }
+    .color-red {
+      color: red; /* 赤色のクラス */
+    }
+    .highlight {
+      text-shadow: 0 0 10px #00f, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 70px #0ff, 0 0 80px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
+    }
+    .n {
+      display: block; /* ブロック要素にする */
+    }
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: 100; /* ローダーを最前面に表示 */
+      color: #333; /* フォントカラー */
+    }
+    .loader-video {
+      width: 300px; /* 動画の幅を指定 */
+      height: auto; /* 高さは自動調整 */
+      margin: 0 20px; /* 動画の左右の余白 */
+    }
+  </style>
+  <script>
+    const links = {
+      "row1": { 
+        url: "https://www.youtube.com/watch?v=OMp9s9f4cnI", 
+        description: "<span class='n'><h3>君と出会えた奇跡 / ライフガード</h3></span><span class='n'>この曲は出会えたことに感謝していることを表しています。</span>君にというのは" 
+      },
+      "row2": { 
+        url: "https://www.youtube.com/watch?v=AkYCR-N9hbY", 
+        description: "繁殖期である２～３月頃に、アズマヒキガエルは<span class='highlight'>沼や池</span>を訪れます。" 
+      },
+      "row3": { 
+        url: "https://www.youtube.com/watch?v=i1jS16w7-18", 
+        description: "アズマヒキガエルの卵はヒモ状で、<span class='highlight'>数メートル</span>もあります。" 
+      },
+      "row4": { 
+        url: "https://www.youtube.com/watch?v=pMHAWqqdGXI", 
+        description: "アズマヒキガエルの生息地には<span class='highlight'>湿地帯</span>が多いです。" 
+      }
+    };
 
-  function createTable() {
-    const contentDiv = document.getElementById('content');
-    const table = document.createElement('table');
-    table.setAttribute('cellpadding', '0');
-    table.setAttribute('cellspacing', '0');
-    table.setAttribute('border', '0');
-    table.setAttribute('align', 'left');
+    const textToDisplay = [
+      "アズマヒキガエルの生態へようこそ！",
+      "ここでは、彼らの生息地や習性について学べます。",
+      "興味深い動画をたくさんご用意しています。",
+      "さあ、始めましょう！"
+    ];
 
-    for (const [id, link] of Object.entries(links)) {
-      const row = document.createElement('tr');
-      row.setAttribute('id', id);
-      row.setAttribute('onclick', `changeLink('${id}')`);
-
-      const imgCell = document.createElement('td');
-    //  imgCell.setAttribute('width', '330');
-    //  imgCell.setAttribute('height', '250');
-      imgCell.setAttribute('valign', 'top');
-      imgCell.setAttribute('class', 'img');
-      const img = document.createElement('img');
-      img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
-    //  img.setAttribute('width', '320');
-    //  img.setAttribute('height', '240');
-      imgCell.appendChild(img);
-
-      const descriptionCell = document.createElement('td');
-      descriptionCell.setAttribute('width', '250');
-      descriptionCell.setAttribute('valign', 'top');
-      descriptionCell.setAttribute('class', 'text');
-      descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
-
-      row.appendChild(imgCell);
-      row.appendChild(descriptionCell);
-      table.appendChild(row);
+    function changeLink(id) {
+      const link = links[id];
+      if (link) {
+        window.open(link.url, '_blank'); // 新しいタブでリンク先を開く
+      }
     }
 
-    contentDiv.appendChild(table);
-  }
+    function createTable() {
+      const contentDiv = document.getElementById('content');
+      const table = document.createElement('table');
+      table.setAttribute('cellpadding', '0');
+      table.setAttribute('cellspacing', '0');
+      table.setAttribute('border', '0');
+      table.setAttribute('align', 'left');
 
-  window.onload = createTable; // ページが読み込まれたらテーブルを作成
-</script>
+      for (const [id, link] of Object.entries(links)) {
+        const row = document.createElement('tr');
+        row.setAttribute('id', id);
+        row.setAttribute('onclick', `changeLink('${id}')`);
+
+        const imgCell = document.createElement('td');
+        imgCell.setAttribute('valign', 'top');
+        imgCell.setAttribute('class', 'img');
+        const img = document.createElement('img');
+        img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
+        imgCell.appendChild(img);
+
+        const descriptionCell = document.createElement('td');
+        descriptionCell.setAttribute('width', '250');
+        descriptionCell.setAttribute('valign', 'top');
+        descriptionCell.setAttribute('class', 'text');
+        descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
+
+        row.appendChild(imgCell);
+        row.appendChild(descriptionCell);
+        table.appendChild(row);
+      }
+
+      contentDiv.appendChild(table);
+      document.querySelector('.loader').style.display = 'none'; // ロード画面を非表示にする
+    }
+
+    function displayText() {
+      const loader = document.querySelector('.loader');
+      loader.innerHTML = ""; // ローダーをクリア
+      textToDisplay.forEach((text, index) => {
+        setTimeout(() => {
+          loader.innerHTML += `<p>${text}</p>`;
+        }, index * 3000); // 3000ミリ秒ごとに表示
+      });
+    }
+
+    window.onload = function() {
+      displayText(); // ロード中のテキスト表示を開始
+      const video = document.querySelector('.bg-video');
+      video.oncanplaythrough = function() {
+        createTable(); // 動画が読み込まれたらテーブルを作成
+      };
+    }
+  </script>
 </head>
 <body>
+
+<div class="loader"> 
+  <video class="loader-video" autoplay loop muted>
+    <source src="image/ded.mp4" type="video/mp4">
+    お使いのブラウザは動画をサポートしていません。
+  </video>
+  ロード中...
+</div> <!-- ロード画面 -->
 
 <video class="bg-video" autoplay loop muted>
   <source src="image/ded.mp4" type="video/mp4">
