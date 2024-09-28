@@ -32,6 +32,10 @@
     .img img {
       opacity: 0.7; /* 画像を半透明にする */
     }
+.list{
+  
+      text-align: left; /* 左揃え */
+}
     .text {
       font-family: 'akaina', sans-serif; /* フォントの適用 */
       background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
@@ -176,6 +180,7 @@ function changeLink(id) {
 
       for (const [id, link] of Object.entries(links)) {
         const row = document.createElement('tr');
+        row.setAttribute('class', 'list');
         row.setAttribute('id', id);
         row.setAttribute('onclick', `changeLink('${id}')`);
 
