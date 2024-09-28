@@ -98,12 +98,15 @@
     }
   };
 
-  const textToDisplay = [
-    "アズマヒキガエルの生態へようこそ！",
-    "ここでは、彼らの生息地や習性について学べます。",
-    "興味深い動画をたくさんご用意しています。",
-    "さあ、始めましょう！"
-  ];
+/*  const textToDisplay = [
+    "1",
+    "2",
+    "3"
+  ];*/
+const textToDisplay = [];
+for (let i = 1; i <= 12; i++) {
+  textToDisplay.push(i.toString()); // 数字を文字列として追加
+}
 
   let tableCreated = false; // テーブルが作成されたかどうかを管理するフラグ
 
@@ -159,7 +162,7 @@
     textToDisplay.forEach((text, index) => {
       setTimeout(() => {
         loader.innerHTML = `<p>${text}</p>`; // 新しいテキストで更新
-      }, index * 3000); // 3000ミリ秒ごとに表示
+      }, index * 1000); // 3000ミリ秒ごとに表示
     });
   }
 
