@@ -73,94 +73,99 @@
     }
   </style>
   <script>
-    const links = {
-      "row1": { 
-        url: "https://www.youtube.com/watch?v=OMp9s9f4cnI", 
-        description: "<span class='n'><h3>君と出会えた奇跡 / ライフガード</h3></span><span class='n'>この曲は出会えたことに感謝していることを表しています。</span>君にというのは" 
-      },
-      "row2": { 
-        url: "https://www.youtube.com/watch?v=AkYCR-N9hbY", 
-        description: "繁殖期である２～３月頃に、アズマヒキガエルは<span class='highlight'>沼や池</span>を訪れます。" 
-      },
-      "row3": { 
-        url: "https://www.youtube.com/watch?v=i1jS16w7-18", 
-        description: "アズマヒキガエルの卵はヒモ状で、<span class='highlight'>数メートル</span>もあります。" 
-      },
-      "row4": { 
-        url: "https://www.youtube.com/watch?v=pMHAWqqdGXI", 
-        description: "アズマヒキガエルの生息地には<span class='highlight'>湿地帯</span>が多いです。" 
-      }
+  const links = {
+    "row1": { 
+      url: "https://www.youtube.com/watch?v=OMp9s9f4cnI", 
+      description: "<span class='n'><h3>君と出会えた奇跡 / ライフガード</h3></span><span class='n'>この曲は出会えたことに感謝していることを表しています。</span>君にというのは" 
+    },
+    "row2": { 
+      url: "https://www.youtube.com/watch?v=AkYCR-N9hbY", 
+      description: "繁殖期である２～３月頃に、アズマヒキガエルは<span class='highlight'>沼や池</span>を訪れます。" 
+    },
+    "row3": { 
+      url: "https://www.youtube.com/watch?v=i1jS16w7-18", 
+      description: "アズマヒキガエルの卵はヒモ状で、<span class='highlight'>数メートル</span>もあります。" 
+    },
+    "row4": { 
+      url: "https://www.youtube.com/watch?v=pMHAWqqdGXI", 
+      description: "アズマヒキガエルの生息地には<span class='highlight'>湿地帯</span>が多いです。" 
+    }
+  };
+
+  const textToDisplay = [
+    "アズマヒキガエルの生態へようこそ！",
+    "ここでは、彼らの生息地や習性について学べます。",
+    "興味深い動画をたくさんご用意しています。",
+    "さあ、始めましょう！"
+  ];
+
+  let tableCreated = false; // テーブルが作成されたかどうかを管理するフラグ
+
+  function changeLink(id) {
+    const link = links[id];
+    if (link) {
+      window.open(link.url, '_blank'); // 新しいタブでリンク先を開く
+    }
+  }
+
+  function createTable() {
+    if (tableCreated) return; // すでにテーブルが作成されている場合は何もしない
+    tableCreated = true; // テーブル作成フラグを立てる
+
+    const contentDiv = document.getElementById('content');
+    const table = document.createElement('table');
+    table.setAttribute('cellpadding', '0');
+    table.setAttribute('cellspacing', '0');
+    table.setAttribute('border', '0');
+    table.setAttribute('align', 'left');
+
+    for (const [id, link] of Object.entries(links)) {
+      const row = document.createElement('tr');
+      row.setAttribute('id', id);
+      row.setAttribute('onclick', `changeLink('${id}')`);
+
+      const imgCell = document.createElement('td');
+      imgCell.setAttribute('valign', 'top');
+      imgCell.setAttribute('class', 'img');
+      const img = document.createElement('img');
+      img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
+      imgCell.appendChild(img);
+
+      const descriptionCell = document.createElement('td');
+      descriptionCell.setAttribute('width', '250');
+      descriptionCell.setAttribute('valign', 'top');
+      descriptionCell.setAttribute('class', 'text');
+      descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
+
+      row.appendChild(imgCell);
+      row.appendChild(descriptionCell);
+      table.appendChild(row);
+    }
+
+    contentDiv.appendChild(table);
+    document.querySelector('.loader').style.zIndex = '-999999'; // ロード画面のz-indexを変更
+    document.body.style.overflow = 'auto'; // スクロールを有効に
+  }
+
+  function displayText() {
+    const loader = document.querySelector('.loader');
+    loader.innerHTML = ""; // ローダーをクリア
+    textToDisplay.forEach((text, index) => {
+      setTimeout(() => {
+        loader.innerHTML = `<p>${text}</p>`; // 新しいテキストで更新
+      }, index * 3000); // 3000ミリ秒ごとに表示
+    });
+  }
+
+  window.onload = function() {
+    displayText(); // ロード中のテキスト表示を開始
+    const video = document.querySelector('.bg-video');
+    video.oncanplaythrough = function() {
+      createTable(); // 動画が読み込まれたらテーブルを作成
     };
+  }
+</script>
 
-    const textToDisplay = [
-      "アズマヒキガエルの生態へようこそ！",
-      "ここでは、彼らの生息地や習性について学べます。",
-      "興味深い動画をたくさんご用意しています。",
-      "さあ、始めましょう！"
-    ];
-
-    function changeLink(id) {
-      const link = links[id];
-      if (link) {
-        window.open(link.url, '_blank'); // 新しいタブでリンク先を開く
-      }
-    }
-
-    function createTable() {
-      const contentDiv = document.getElementById('content');
-      const table = document.createElement('table');
-      table.setAttribute('cellpadding', '0');
-      table.setAttribute('cellspacing', '0');
-      table.setAttribute('border', '0');
-      table.setAttribute('align', 'left');
-
-      for (const [id, link] of Object.entries(links)) {
-        const row = document.createElement('tr');
-        row.setAttribute('id', id);
-        row.setAttribute('onclick', `changeLink('${id}')`);
-
-        const imgCell = document.createElement('td');
-        imgCell.setAttribute('valign', 'top');
-        imgCell.setAttribute('class', 'img');
-        const img = document.createElement('img');
-        img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
-        imgCell.appendChild(img);
-
-        const descriptionCell = document.createElement('td');
-        descriptionCell.setAttribute('width', '250');
-        descriptionCell.setAttribute('valign', 'top');
-        descriptionCell.setAttribute('class', 'text');
-        descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
-
-        row.appendChild(imgCell);
-        row.appendChild(descriptionCell);
-        table.appendChild(row);
-      }
-
-      contentDiv.appendChild(table);
-      document.querySelector('.loader').style.zIndex = '-999999'; // ロード画面のz-indexを変更
-     // document.body.style.overflow = 'hidden'; // スクロールを無効に
-    }
-
-    function displayText() {
-      const loader = document.querySelector('.loader');
-      loader.innerHTML = ""; // ローダーをクリア
-      textToDisplay.forEach((text, index) => {
-        setTimeout(() => {
-          loader.innerHTML = `<p>${text}</p>`; // 新しいテキストで更新
-        }, index * 3000); // 3000ミリ秒ごとに表示
-      });
-    }
-
-    window.onload = function() {
-      displayText(); // ロード中のテキスト表示を開始
-      const video = document.querySelector('.bg-video');
-      video.oncanplaythrough = function() {
-        createTable(); // 動画が読み込まれたらテーブルを作成
-       // document.body.style.overflow = 'auto'; // ロードが終わったらスクロールを有効に
-      };
-    }
-  </script>
 </head>
 <body>
 
