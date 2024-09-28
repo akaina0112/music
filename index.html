@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>リンクを変更する例</title>
+<title>アズマヒキガエルの生態</title>
 <style type="text/css">
   body {
     margin: 0;
     height: 100%;
     overflow: auto; /* スクロールを可能にする */
-    text-align: left; /* 左揃え */
-    margin: 20px; /* マージンを追加 */
   }
   .bg-video {
     position: fixed;
@@ -24,7 +22,7 @@
     margin: 20px; /* マージンを追加 */
   }
   .img img {
-    opacity: 0.9; /* 画像を半透明にする */
+    opacity: 0.7; /* 画像を半透明にする */
   }
   .text {
     background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景を追加 */
@@ -34,19 +32,62 @@
   }
 </style>
 <script>
+  const links = {
+    "row1": { url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", description: "アズマヒキガエルは、近畿以北に生息するヒキガエル（ガマガエル）です。" },
+    "row2": { url: "https://www.youtube.com/watch?v=oHg5SJYRHA0", description: "繁殖期である２～３月頃に、アズマヒキガエルは沼や池を訪れます。" },
+    "row3": { url: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ", description: "アズマヒキガエルの卵はヒモ状で、数メートルもあります。" }
+  };
+
   function changeLink(id) {
-    const links = {
-      "row1": "https://akaina0112.github.io/music/image/photo01.jpg",
-      "row2": "https://akaina0112.github.io/music/image/photo02.jpg",
-      "row3": "https://akaina0112.github.io/music/image/photo03.jpg"
-    };
-    
-    // idに基づいてリンクを取得
     const link = links[id];
     if (link) {
-      window.location.href = link; // リンク先に遷移
+      window.location.href = link.url; // リンク先に遷移
     }
   }
+
+  function createTable() {
+    const contentDiv = document.getElementById('content');
+    const table = document.createElement('table');
+    table.setAttribute('cellpadding', '0');
+    table.setAttribute('cellspacing', '0');
+    table.setAttribute('border', '0');
+    table.setAttribute('align', 'left');
+
+    for (const [id, link] of Object.entries(links)) {
+      const row = document.createElement('tr');
+      row.setAttribute('id', id);
+      row.setAttribute('onclick', `changeLink('${id}')`);
+
+      const imgCell = document.createElement('td');
+      imgCell.setAttribute('width', '330');
+      imgCell.setAttribute('height', '250');
+      imgCell.setAttribute('valign', 'top');
+      imgCell.setAttribute('class', 'img');
+      const img = document.createElement('img');
+      img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
+      img.setAttribute('width', '320');
+      img.setAttribute('height', '240');
+      imgCell.appendChild(img);
+
+      const textCell = document.createElement('td');
+      textCell.setAttribute('width', '10');
+
+      const descriptionCell = document.createElement('td');
+      descriptionCell.setAttribute('width', '250');
+      descriptionCell.setAttribute('valign', 'top');
+      descriptionCell.setAttribute('class', 'text');
+      descriptionCell.textContent = link.description;
+
+      row.appendChild(imgCell);
+      row.appendChild(textCell);
+      row.appendChild(descriptionCell);
+      table.appendChild(row);
+    }
+
+    contentDiv.appendChild(table);
+  }
+
+  window.onload = createTable; // ページが読み込まれたらテーブルを作成
 </script>
 </head>
 <body>
@@ -56,34 +97,8 @@
   お使いのブラウザは動画をサポートしていません。
 </video>
 
-<div class="content">
-<table cellpadding="0" cellspacing="0" border="0" align="left">
-<tr id="row1" onclick="changeLink('row1')">
-<td width="330" height="250" valign="top" class="img">
-<img src="image/photo01.jpg" width="320" height="240" alt="写真1">
-</td>
-<td width="10"></td>
-<td width="250" valign="top" class="text">
-アズマヒキガエルは、近畿以北に生息するヒキガエル（ガマガエル）です。
-</td>
-</tr>
-<tr id="row2" onclick="changeLink('row2')"  class="content">
-<td width="330" height="250" valign="top" class="img">
-<img src="image/photo02.jpg" width="320" height="240" alt="写真2"></td>
-<td width="10"></td>
-<td width="250" valign="top" class="text">
-繁殖期である２～３月頃に、アズマヒキガエルは沼や池を訪れます。
-</td>
-</tr>
-<tr id="row3" onclick="changeLink('row3')">
-<td width="330" height="250" valign="top" class="img">
-<img src="image/photo03.jpg" width="320" height="240" alt="写真3"></td>
-<td width="10"></td>
-<td width="250" valign="top" class="text">
-アズマヒキガエルの卵はヒモ状で、数メートルもあります。
-</td>
-</tr>
-</table>
+<div class="content" id="content">
+  <!-- 動的に生成されるテーブルがここに挿入されます -->
 </div>
 </body>
 </html>
