@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>アズマヒキガエルの生態</title>
+<title>リンクを変更する例</title>
 <style type="text/css">
   body {
     margin: 0;
@@ -24,12 +24,28 @@
   .img img {
     opacity: 0.7; /* 画像を半透明にする */
   }
-  .text{
-        background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景を追加 */
+  .text {
+    background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景を追加 */
     padding: 10px; /* 内側の余白を追加 */
     border-radius: 5px; /* 角を丸くする */
+    font-weight: bold; /* 文字を太くする */
   }
 </style>
+<script>
+  function changeLink(id) {
+    const links = {
+      "row1": "https://akaina0112.github.io/music/image/photo01.jpg",
+      "row2": "https://akaina0112.github.io/music/image/photo02.jpg",
+      "row3": "https://akaina0112.github.io/music/image/photo03.jpg"
+    };
+    
+    // idに基づいてリンクを取得
+    const link = links[id];
+    if (link) {
+      window.location.href = link; // リンク先に遷移
+    }
+  }
+</script>
 </head>
 <body>
 
@@ -40,72 +56,32 @@
 
 <div class="content">
 <table cellpadding="0" cellspacing="0" border="0" align="left">
-<tr>
+<tr id="row1" onclick="changeLink('row1')">
 <td width="330" height="250" valign="top" class="img">
 <img src="image/photo01.jpg" width="320" height="240" alt="写真1">
 </td>
 <td width="10"></td>
 <td width="250" valign="top" class="text">
-
-アズマヒキガエルは、近畿以北に生息するヒキガエル（ガマガエル）です。体の色は褐色で、側面に白と黒の斑模様があるのが特徴です。
-
+アズマヒキガエルは、近畿以北に生息するヒキガエル（ガマガエル）です。
 </td>
 </tr>
-</table><br>
-
-<table cellpadding="0" cellspacing="0" border="0" align="left">
-<tr>
+<tr id="row2" onclick="changeLink('row2')">
 <td width="330" height="250" valign="top" class="img">
 <img src="image/photo02.jpg" width="320" height="240" alt="写真2"></td>
 <td width="10"></td>
 <td width="250" valign="top" class="text">
-
-繁殖期である２～３月頃に、アズマヒキガエルは沼や池を訪れます。ここで交尾と産卵を行います。
-
+繁殖期である２～３月頃に、アズマヒキガエルは沼や池を訪れます。
 </td>
 </tr>
-</table><br>
-
-<table cellpadding="0" cellspacing="0" border="0" align="left">
-<tr>
+<tr id="row3" onclick="changeLink('row3')">
 <td width="330" height="250" valign="top" class="img">
 <img src="image/photo03.jpg" width="320" height="240" alt="写真3"></td>
 <td width="10"></td>
 <td width="250" valign="top" class="text">
-
-アズマヒキガエルの卵はヒモ状で、数メートルもあります。<br>
-産卵時は細くて黒いのですが、しだいに水を吸ってゼリー状に変わります。
-
+アズマヒキガエルの卵はヒモ状で、数メートルもあります。
 </td>
 </tr>
-</table><br>
-
-<table cellpadding="0" cellspacing="0" border="0" align="left">
-<tr>
-<td width="330" height="250" valign="top" class="img">
-<img src="image/photo04.jpg" width="320" height="240" alt="写真4"></td>
-<td width="10"></td>
-<td width="250" valign="top" class="text">
-
-卵を拡大した写真です。チューブの中には黒い点のようなたくさんの胚が見受けられます。
-
-</td>
-</tr>
-</table><br>
-
-<table cellpadding="0" cellspacing="0" border="0" align="left">
-<tr>
-<td width="330" height="250" valign="top" class="img">
-<img src="image/photo05.jpg" width="320" height="240" alt="写真5"></td>
-<td width="10"></td>
-<td width="250" valign="top" class="text">
-
-１～２週間ほどで孵化すると、たくさんのオタマジャクシで池はにぎやかになります。<br>
-しかし、無事にカエルとして成長できるのは、ほんの一握りに過ぎません。
-
-</td>
-</tr>
-</table><br>
+</table>
 </div>
 </body>
 </html>
