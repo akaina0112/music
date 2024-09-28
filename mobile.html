@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ビューポートメタタグを追加 -->
   <title>アズマヒキガエルの生態</title>
   <style type="text/css">
-    .img img {
-  opacity: 0.7;
-  max-width: 100%; /* 画像を親要素に合わせる */
-  height: auto; /* 高さを自動調整 */
-  display: block; /* ブロック要素にして余白を適用 */
-  margin: 0 auto; /* 中央揃え */
+    .text {
+  font-family: 'akaina', sans-serif; /* フォントの適用 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
+  padding: 10px; /* 内側の余白 */
+  width: 50% !important;
+  height: 100px !important;
+  border-radius: 5px; /* 角を丸く */
+  font-weight: bold; /* 太字 */
+  text-align: left; /* 左揃え */
+  box-sizing: border-box; /* パディングを含めたサイズ */
+  overflow: hidden; /* オーバーフロー防止 */
+  background-size: cover; /* 背景画像をカバー */
+  background-position: center; /* 背景画像の位置を中央に */
 }
 
     @font-face {
@@ -42,19 +49,6 @@
       opacity: 0.7;
       max-width: 100%; /* 画像を親要素に合わせる */
       height: auto; /* 高さを自動調整 */
-    }
-    .text {
-      font-family: 'akaina', sans-serif;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 10px;
-      width: 100%; /* 幅を100%に設定 */
-      max-width: 300px; /* 最大幅を設定 */
-      border-radius: 5px;
-      font-weight: bold;
-      text-align: left;
-      box-sizing: border-box;
-      overflow: hidden;
-      margin: 10px 0; /* セルの間にマージンを追加 */
     }
     .color-red {
       color: red;
@@ -136,44 +130,51 @@
       }
     }
 
-    function createTable() {
-      if (tableCreated) return;
-      tableCreated = true;
+function createTable() {
+  if (tableCreated) return; // すでにテーブルが作成されている場合は何もしない
+  tableCreated = true; // テーブル作成フラグを立てる
 
-      const contentDiv = document.getElementById('content');
-      const table = document.createElement('table');
-      table.setAttribute('cellpadding', '0');
-      table.setAttribute('cellspacing', '0');
-      table.setAttribute('border', '0');
-      table.setAttribute('align', 'left');
+  const contentDiv = document.getElementById('content');
+  const table = document.createElement('table');
+  table.setAttribute('cellpadding', '0');
+  table.setAttribute('cellspacing', '0');
+  table.setAttribute('border', '0');
+  table.setAttribute('align', 'left');
 
-      for (const [id, link] of Object.entries(links)) {
-        const row = document.createElement('tr');
-        row.setAttribute('id', id);
-        row.setAttribute('onclick', `changeLink('${id}')`);
+  for (const [id, link] of Object.entries(links)) {
+    const row = document.createElement('tr');
+    row.setAttribute('id', id);
+    row.setAttribute('onclick', `changeLink('${id}')`);
 
-        const imgCell = document.createElement('td');
-        imgCell.setAttribute('valign', 'top');
-        imgCell.setAttribute('class', 'img');
-        const img = document.createElement('img');
-        img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
-        imgCell.appendChild(img);
+    const imgCell = document.createElement('td');
+    imgCell.setAttribute('valign', 'top');
+    imgCell.setAttribute('class', 'img');
+    const img = document.createElement('img');
+    img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
+    imgCell.appendChild(img);
 
-        const descriptionCell = document.createElement('td');
-        descriptionCell.setAttribute('width', '250');
-        descriptionCell.setAttribute('valign', 'top');
-        descriptionCell.setAttribute('class', 'text');
-        descriptionCell.innerHTML = link.description;
+    const descriptionCell = document.createElement('td');
+    descriptionCell.setAttribute('width', '250');
+    descriptionCell.setAttribute('valign', 'top');
+    descriptionCell.setAttribute('class', 'text');
 
-        row.appendChild(imgCell);
-        row.appendChild(descriptionCell);
-        table.appendChild(row);
-      }
+    // 背景画像としてサムネイルを設定
+    const videoId = link.url.split('v=')[1];
+    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    descriptionCell.style.backgroundImage = `url(${thumbnailUrl})`;
+    
+    descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
 
-      contentDiv.appendChild(table);
-      document.querySelector('.loader').style.zIndex = '-999999';
-      document.body.style.overflow = 'auto';
-    }
+    row.appendChild(imgCell);
+    row.appendChild(descriptionCell);
+    table.appendChild(row);
+  }
+
+  contentDiv.appendChild(table);
+  document.querySelector('.loader').style.zIndex = '-999999'; // ロード画面のz-indexを変更
+  document.body.style.overflow = 'auto'; // スクロールを有効に
+}
+
 
     function displayText() {
       const loader = document.querySelector('.loader');
