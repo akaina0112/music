@@ -185,15 +185,18 @@ function createTable() {
   contentDiv.appendChild(table);
   document.querySelector('.loader').style.zIndex = '-999999'; // ロード画面のz-indexを変更
   document.body.style.overflow = 'auto'; // スクロールを有効に
+  document.querySelector('.menu').style.display = 'flex'; // ロード画面のz-indexを変更
 }
 
 
 
 function displayText() {
   const loader = document.querySelector('.loader');
+  const menu = document.querySelector('.menu');
   const loaderVideo = document.getElementById('loaderVideo');
 
   loader.style.display = 'block'; // ローダーを表示
+ 　menu.style.display = 'none'; // ローダーを表示
   document.body.style.overflow = 'hidden'; // スクロールを禁止
 
   loaderVideo.onended = function() {
