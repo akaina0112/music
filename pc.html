@@ -108,13 +108,31 @@
 function changeLink(id) {
   const link = links[id];
   if (link) {
-    // 確認ダイアログを表示
-    const userConfirmed = confirm(`このリンクを開いてもよろしいですか？\n${link.url}`);
-    if (userConfirmed) {
-      window.open(link.url, '_blank'); // ユーザーが確認した場合、リンクを開く
-    }
+    const videoId = link.url.split('v=')[1];
+    const apiKey = 'AIzaSyAB_eMk1rBDeKGuahQgDAweiKVvt2dtiX0'; // あなたのAPIキーを入力
+    const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet`;
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const title = data.items[0].snippet.title; // タイトルを取得
+        const userConfirmed = confirm(`このリンクを開いてもよろしいですか？\nタイトル: ${title}`);
+        if (userConfirmed) {
+          window.open(link.url, '_blank');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching YouTube video title:', error);
+        alert('タイトルの取得に失敗しました。');
+      });
   }
 }
+
 
     function createTable() {
       if (tableCreated) return; // すでにテーブルが作成されている場合は何もしない
