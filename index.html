@@ -24,18 +24,47 @@
   .img img {
     opacity: 0.7; /* 画像を半透明にする */
   }
+  .title {
+    color: #007BFF; /* デフォルトのタイトルの色 */
+    font-weight: bold; /* 太字 */
+    font-size: 18px; /* フォントサイズ */
+  }
   .text {
     background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景を追加 */
-    padding: 10px; /* 内側の余白を追加 */
+    padding: 50px; /* 内側の余白を追加 */
     border-radius: 5px; /* 角を丸くする */
     font-weight: bold; /* 文字を太くする */
   }
+  .color-red {
+    color: red; /* 赤色のクラス */
+  }
+  .highlight {
+     text-shadow: 0 0 10px #00f, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 70px #0ff, 0 0 80px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
+  }
+  .n{ display: block; /* ブロック要素にする */}
 </style>
 <script>
   const links = {
-    "row1": { url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", description: "アズマヒキガエルは、近畿以北に生息するヒキガエル（ガマガエル）です。" },
-    "row2": { url: "https://www.youtube.com/watch?v=oHg5SJYRHA0", description: "繁殖期である２～３月頃に、アズマヒキガエルは沼や池を訪れます。" },
-    "row3": { url: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ", description: "アズマヒキガエルの卵はヒモ状で、数メートルもあります。" }
+    "row1": { 
+      url: "https://www.youtube.com/watch?v=OMp9s9f4cnI", 
+      title: "君と出会えた奇跡 / ライフガード", 
+      description: "<span class='n'>この曲は出会えたことに感謝していることを表しています。</span>君にというのは" 
+    },
+    "row2": { 
+      url: "https://www.youtube.com/watch?v=AkYCR-N9hbY", 
+      title: "繁殖期の行動", 
+      description: "繁殖期である２～３月頃に、アズマヒキガエルは<span class='highlight'>沼や池</span>を訪れます。" 
+    },
+    "row3": { 
+      url: "https://www.youtube.com/watch?v=i1jS16w7-18", 
+      title: "卵の特徴", 
+      description: "アズマヒキガエルの卵はヒモ状で、<span class='highlight'>数メートル</span>もあります。" 
+    },
+    "row4": { 
+      url: "https://www.youtube.com/watch?v=pMHAWqqdGXI", 
+      title: "生息地の環境", 
+      description: "アズマヒキガエルの生息地には<span class='highlight'>湿地帯</span>が多いです。" 
+    }
   };
 
   function changeLink(id) {
@@ -69,17 +98,20 @@
       img.setAttribute('height', '240');
       imgCell.appendChild(img);
 
-      const textCell = document.createElement('td');
-      textCell.setAttribute('width', '10');
+      const titleCell = document.createElement('td');
+      titleCell.setAttribute('width', '250');
+      titleCell.setAttribute('valign', 'top');
+      titleCell.setAttribute('class', 'title');
+      titleCell.textContent = link.title; // タイトルを設定
 
       const descriptionCell = document.createElement('td');
       descriptionCell.setAttribute('width', '250');
       descriptionCell.setAttribute('valign', 'top');
       descriptionCell.setAttribute('class', 'text');
-      descriptionCell.textContent = link.description;
+      descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
 
       row.appendChild(imgCell);
-      row.appendChild(textCell);
+      row.appendChild(titleCell); // タイトルを追加
       row.appendChild(descriptionCell);
       table.appendChild(row);
     }
