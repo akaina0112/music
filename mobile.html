@@ -75,11 +75,10 @@
       padding-bottom: 30px;
     }
     .loader-video {
-      width: 80%; /* 動画の幅を80%に設定 */
-      max-width: 300px; /* 最大幅を設定 */
-      height: auto;
-      margin: 0 20px;
-    }
+  width: 100%; /* 幅を100%に設定 */
+  height: 100%; /* 高さを100%に設定 */
+  object-fit: cover; /* アスペクト比を維持しつつ、画面全体を覆う */
+}
     .loader p {
       font-size: 20px;
       margin: 0;
@@ -177,18 +176,20 @@ function createTable() {
 }
 
 
-    function displayText() {
-      const loader = document.querySelector('.loader');
-      loader.innerHTML = "";
-      textToDisplay.forEach((text, index) => {
-        setTimeout(() => {
-          loader.innerHTML = `<p>${text}</p>`;
-          if (index === textToDisplay.length - 1) {
-            setTimeout(createTable, 3000);
-          }
-        }, index * 1000);
-      });
-    }
+
+function displayText() {
+  const loader = document.querySelector('.loader');
+  const loaderVideo = document.getElementById('loaderVideo');
+
+  loader.style.display = 'block'; // ローダーを表示
+  document.body.style.overflow = 'hidden'; // スクロールを禁止
+
+  loaderVideo.onended = function() {
+    loader.style.display = 'none'; // ローダーを非表示にする
+    document.body.style.overflow = 'auto'; // スクロールを再度有効に
+    createTable(); // テーブルを作成
+  };
+}
 
     window.onload = function() {
       displayText();
@@ -198,7 +199,7 @@ function createTable() {
 <body>
 
 <div class="loader"> 
-  <video class="loader-video" autoplay loop muted>
+  <video class="loader-video" autoplay muted id="loaderVideo">
     <source src="image/ded.mp4" type="video/mp4">
     お使いのブラウザは動画をサポートしていません。
   </video>
