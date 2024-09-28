@@ -145,7 +145,7 @@
       loader.innerHTML = ""; // ローダーをクリア
       textToDisplay.forEach((text, index) => {
         setTimeout(() => {
-          loader.innerHTML += `<p>${text}</p>`;
+          loader.innerHTML = `<p>${text}</p>`; // 新しいテキストで更新
         }, index * 3000); // 3000ミリ秒ごとに表示
       });
     }
