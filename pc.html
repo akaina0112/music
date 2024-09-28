@@ -77,6 +77,23 @@
       font-size: 20px; /* フォントサイズを20pxに設定 */
       margin: 0; /* マージンをゼロに */
     }
+        /* モーダルスタイル */
+    #confirmationModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ccc;
+      padding: 20px;
+      z-index: 1000;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    #confirmationModal button {
+      margin: 5px;
+    }
   </style>
   <script>
     const links = {
@@ -105,33 +122,42 @@
 
     let tableCreated = false; // テーブルが作成されたかどうかを管理するフラグ
 
-function changeLink(id) {
-  const link = links[id];
-  if (link) {
-    const videoId = link.url.split('v=')[1];
-    const apiKey = 'AIzaSyAB_eMk1rBDeKGuahQgDAweiKVvt2dtiX0'; // あなたのAPIキーを入力
-    const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet`;
+    function changeLink(id) {
+      const link = links[id];
+      if (link) {
+        const videoId = link.url.split('v=')[1];
+        const apiKey = 'YOUR_API_KEY'; // あなたのAPIキーを入力
+        const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet`;
 
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const title = data.items[0].snippet.title; // タイトルを取得
-        const userConfirmed = confirm(`このリンクを開いてもよろしいですか？\nタイトル: ${title}`);
-        if (userConfirmed) {
-          window.open(link.url, '_blank');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching YouTube video title:', error);
-        alert('タイトルの取得に失敗しました。');
-      });
-  }
-}
+        fetch(apiUrl)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            const title = data.items[0].snippet.title; // タイトルを取得
+            document.getElementById('modalMessage').innerText = `このリンクを開いてもよろしいですか？\nタイトル: ${title}`;
+            document.getElementById('confirmationModal').style.display = 'block'; // モーダルを表示
+
+            // 確認ボタンの処理
+            document.getElementById('confirmButton').onclick = function() {
+              window.open(link.url, '_blank'); // リンクを開く
+              document.getElementById('confirmationModal').style.display = 'none'; // モーダルを非表示
+            };
+
+            // キャンセルボタンの処理
+            document.getElementById('cancelButton').onclick = function() {
+              document.getElementById('confirmationModal').style.display = 'none'; // モーダルを非表示
+            };
+          })
+          .catch(error => {
+            console.error('Error fetching YouTube video title:', error);
+            alert('タイトルの取得に失敗しました。');
+          });
+      }
+    }
 
 
     function createTable() {
@@ -199,9 +225,12 @@ function changeLink(id) {
     <source src="image/ded.mp4" type="video/mp4">
     お使いのブラウザは動画をサポートしていません。
   </video>
-  ロード中...
 </div> <!-- ロード画面 -->
-
+<div id="confirmationModal">
+  <p id="modalMessage"></p>
+  <button id="confirmButton">はい</button>
+  <button id="cancelButton">キャンセル</button>
+</div>
 <video class="bg-video" autoplay loop muted>
   <source src="image/ded.mp4" type="video/mp4">
   お使いのブラウザは動画をサポートしていません。
