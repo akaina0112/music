@@ -64,6 +64,7 @@
       background-color: rgba(255, 255, 255, 0.8);
       z-index: 100; /* ローダーを最前面に表示 */
       color: #333; /* フォントカラー */
+      transition: top 0.5s; /* トランジションを追加 */
     }
     .loader-video {
       width: 300px; /* 動画の幅を指定 */
@@ -137,7 +138,7 @@
       }
 
       contentDiv.appendChild(table);
-      document.querySelector('.loader').style.display = 'none'; // ロード画面を非表示にする
+      document.querySelector('.loader').style.top = '-9999999px'; // ロード画面を上に移動
     }
 
     function displayText() {
