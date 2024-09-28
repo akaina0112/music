@@ -41,7 +41,7 @@
   function changeLink(id) {
     const link = links[id];
     if (link) {
-      window.location.href = link.url; // リンク先に遷移
+      window.open(link.url, '_blank'); // 新しいタブでリンク先を開く
     }
   }
 
