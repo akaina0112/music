@@ -60,7 +60,7 @@
     .color-red {
   color: #a200f2;
   text-shadow: 0 0 10px #a200f2,0 0 15px #a200f2;
-  padding: 20px;^
+  padding: 20px;
   text-align: center;
   letter-spacing: 0.2em;
     }
@@ -207,7 +207,21 @@ function displayText() {
   </script>
 </head>
 <body>
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 
+    <nav class="nav">
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./ap.html">アプデ</a></li>
+            <li><a href="./setu.html">説明</a></li>
+            <li><a href="./life.html">ライフガード</a></li>
+        </ul>
+    </nav>
 <div class="loader"> 
   <video class="loader-video" autoplay muted id="loaderVideo">
     <source src="image/load2.mp4" type="video/mp4">
