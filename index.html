@@ -11,10 +11,10 @@
       font-weight: normal; /* 通常の太さ */
       font-style: normal; /* 通常のスタイル */
     }
-    body {
+    body,html {
       margin: 0;
       height: 100%;
-      overflow: hidden; /* スクロールを無効に */
+      overflow: auto; /* スクロールを有効に */
     }
     .bg-video {
       position: fixed;
@@ -139,6 +139,7 @@
 
       contentDiv.appendChild(table);
       document.querySelector('.loader').style.zIndex = '-999999'; // ロード画面のz-indexを変更
+      document.body.style.overflow = 'auto'; // スクロールを有効に
     }
 
     function displayText() {
