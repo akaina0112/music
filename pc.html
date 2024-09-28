@@ -105,12 +105,16 @@
 
     let tableCreated = false; // テーブルが作成されたかどうかを管理するフラグ
 
-    function changeLink(id) {
-      const link = links[id];
-      if (link) {
-        window.open(link.url, '_blank'); // 新しいタブでリンク先を開く
-      }
+function changeLink(id) {
+  const link = links[id];
+  if (link) {
+    // 確認ダイアログを表示
+    const userConfirmed = confirm(`このリンクを開いてもよろしいですか？\n${link.url}`);
+    if (userConfirmed) {
+      window.open(link.url, '_blank'); // ユーザーが確認した場合、リンクを開く
     }
+  }
+}
 
     function createTable() {
       if (tableCreated) return; // すでにテーブルが作成されている場合は何もしない
