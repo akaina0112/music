@@ -3,6 +3,13 @@
 <head>
 <title>アズマヒキガエルの生態</title>
 <style type="text/css">
+  @font-face {
+  font-family: 'akaina'; /* フォント名を定義 */
+  src: url('fonts/setofont.ttf') format('truetype'),   /* 次に試すフォーマット */
+       url('fonts/setofont-ex.ttf') format('truetype'); /* フォントファイルの場所 */
+  font-weight: normal; /* 通常の太さ */
+  font-style: normal; /* 通常のスタイル */
+}
   body {
     margin: 0;
     height: 100%;
@@ -24,6 +31,7 @@
     opacity: 0.7; /* 画像を半透明にする */
   }
   .text {
+     font-family: 'akaina', sans-serif; /* ページ全体に適用 */
     background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景を追加 */
    /* padding: 10px; /* 内側の余白を追加 */
     width: 200px; /* 横幅200px */
