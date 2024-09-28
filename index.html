@@ -93,14 +93,14 @@
       row.setAttribute('onclick', `changeLink('${id}')`);
 
       const imgCell = document.createElement('td');
-      imgCell.setAttribute('width', '330');
-      imgCell.setAttribute('height', '250');
+    //  imgCell.setAttribute('width', '330');
+    //  imgCell.setAttribute('height', '250');
       imgCell.setAttribute('valign', 'top');
       imgCell.setAttribute('class', 'img');
       const img = document.createElement('img');
       img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
-      img.setAttribute('width', '320');
-      img.setAttribute('height', '240');
+    //  img.setAttribute('width', '320');
+    //  img.setAttribute('height', '240');
       imgCell.appendChild(img);
 
       const descriptionCell = document.createElement('td');
