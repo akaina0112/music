@@ -115,11 +115,6 @@
       }
     };
 
-    const textToDisplay = [];
-    for (let i = 1; i <= 12; i++) {
-      textToDisplay.push(i.toString()); // 数字を文字列として追加
-    }
-
     let tableCreated = false; // テーブルが作成されたかどうかを管理するフラグ
 
 function changeLink(id) {
@@ -203,19 +198,19 @@ function changeLink(id) {
       document.body.style.overflow = 'auto'; // スクロールを有効に
     }
 
-    function displayText() {
-      const loader = document.querySelector('.loader');
-      loader.innerHTML = ""; // ローダーをクリア
-      textToDisplay.forEach((text, index) => {
-        setTimeout(() => {
-          loader.innerHTML = `<p>${text}</p>`; // 新しいテキストで更新
-          // 最後のテキストが表示された後にテーブルを作成
-          if (index === textToDisplay.length - 1) {
-            setTimeout(createTable, 3000); // さらに3秒後にテーブルを作成
-          }
-        }, index * 1000); // 1000ミリ秒ごとに表示
-      });
-    }
+function displayText() {
+  const loader = document.querySelector('.loader');
+  const loaderVideo = document.getElementById('loaderVideo');
+
+  loader.style.display = 'block'; // ローダーを表示
+  document.body.style.overflow = 'hidden'; // スクロールを禁止
+
+  loaderVideo.onended = function() {
+    loader.style.display = 'none'; // ローダーを非表示にする
+    document.body.style.overflow = 'auto'; // スクロールを再度有効に
+    createTable(); // テーブルを作成
+  };
+}
 
     window.onload = function() {
       displayText(); // ロード中のテキスト表示を開始
@@ -225,11 +220,12 @@ function changeLink(id) {
 <body>
 
 <div class="loader"> 
-  <video class="loader-video" autoplay loop muted>
-    <source src="image/ded.mp4" type="video/mp4">
+  <video class="loader-video" autoplay loop muted id="loaderVideo">
+    <source src="image/load.mp4" type="video/mp4">
     お使いのブラウザは動画をサポートしていません。
   </video>
 </div> <!-- ロード画面 -->
+
 <div id="confirmationModal">
   <p id="modalMessage"></p>
   <button id="confirmButton">はい</button>
