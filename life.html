@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ライフガードのプロフィールページ</title>
+        <meta name="description" content="ライフガードのプロフィールを詳しく紹介します！" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+</style>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+  font-family: "Yusei Magic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+            }
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* 動画は最背面に配置 */
+    }
+            .content {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 16px;
+                background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
+            }
+
+            .heading-lv1 {
+                font-size: 32px;
+                font-style: italic;
+            }
+
+            .heading-lv2 {
+                font-size: 24px;
+            }
+
+            .heading-lv3 {
+                font-size: 20px;
+            }
+
+            .heading-margin {
+                margin-top: 32px;
+            }
+
+            .text {
+                margin: 16px 0 0;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .profile-image {
+                margin: 16px 0 0;
+                text-align: center;
+            }
+
+            .profile-image img {
+                width: 150px;
+                height: auto;
+                border-radius: 50%;
+            }
+
+            a {
+                color: #3F82A8;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+img {
+    pointer-events: none; /* 画像に対するすべてのポインターイベントを無効化 */
+}
+
+
+        </style>
+    </head>
+    <body>
+<video class="bg-video" autoplay loop muted>
+  <source src="./image/ded.mp4" type="video/mp4">
+  お使いのブラウザは動画をサポートしていません。
+</video>
+        <div class="content">
+            <h1 class="heading-lv1 text-center">Profile</h1>
+            <figure class="profile-image">
+                <img src="https://yt3.ggpht.com/1DxyGA_BhSREO4yMjCOf88hOqgwQ0BXmOUGIYW2OVeqGY5s6K_AjWK8tE0R8WvUFeLabsCgdhQ=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="東條 はるのプロフィール画像" width="300" height="300">
+            </figure>
+
+            <h2 class="heading-lv2 heading-margin text-center">ライフガード</h2>
+            <p class="text text-center">javascriptを勉強中です。(5年ぐらい)</p>
+
+            <h3 class="heading-lv3 heading-margin text-center">自己紹介</h3>
+            <p class="text text-center">人間関係で体調や行動がコロコロ変わる変わり者</p>
+            <p class="text text-center">最近は作曲にハマっているこれも人間関係</p>
+            <p class="text text-center">200人突破すると何かが起こります。</p>
+
+
+            <p class="text text-center"><a href="./index.html">homeページへ</a></p>
+        </div>
+    </body>
+</html>
