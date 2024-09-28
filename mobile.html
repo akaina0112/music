@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ビューポートメタタグを追加 -->
   <title>アズマヒキガエルの生態</title>
   <style type="text/css">
-    .text {
+.text {
   font-family: 'akaina', sans-serif; /* フォントの適用 */
   background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
   padding: 10px; /* 内側の余白 */
@@ -16,9 +16,8 @@
   text-align: left; /* 左揃え */
   box-sizing: border-box; /* パディングを含めたサイズ */
   overflow: hidden; /* オーバーフロー防止 */
-  background-size: cover; /* 背景画像をカバー */
-  background-position: center; /* 背景画像の位置を中央に */
 }
+
 
     @font-face {
       font-family: 'akaina';
@@ -157,11 +156,9 @@ function createTable() {
     descriptionCell.setAttribute('width', '250');
     descriptionCell.setAttribute('valign', 'top');
     descriptionCell.setAttribute('class', 'text');
-
-    // 背景画像としてサムネイルを設定
-    const videoId = link.url.split('v=')[1];
-    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-    descriptionCell.style.backgroundImage = `url(${thumbnailUrl})`;
+    
+    // 背景画像の設定を削除
+    // descriptionCell.style.backgroundImage = `url(${thumbnailUrl})`;
     
     descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
 
