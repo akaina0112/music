@@ -8,6 +8,14 @@
  
     <style type="text/css">
         /* スタイル設定 */
+        @media (max-width: 768px) {
+    .image {
+        display: none; /* すべての画像を非表示 */
+    }
+    #mobileImage {
+        display: block; /* スマホ用画像のみ表示 */
+    }
+}
    @font-face {
       font-family: 'akaina';
       src: url('fonts/setofont.ttf') format('truetype'),
@@ -218,15 +226,21 @@ color: rgba(255, 255, 255, 0);"
 　　　　　　<h3 class="h3">右下を押すとバーが表示され選択できます。</h3>
            <h3>PC画面↓</h3>
             <img src="./image/PC.png" alt="pc画面" style="display: block; margin: 0 auto; width: 50vw; height: 50vh; object-fit: cover; cursor: pointer;" class="image">
-
+    
+            <img src="./image/PC.png" alt="pc画面" style="display: block; margin: 0 auto; width: 50%; height: 50%; object-fit: cover; cursor: pointer;" class="image" id="mobileImage">
+<!-- id="mobileImage"><!-- モーダル -->
             <h3>mobile画面↓</h3>
-            <img src="./image/mobile.png" alt="mobile画面" style="display: block; margin: 0 auto; width: 30vw; height: 100vh; object-fit: cover; cursor: pointer;" class="image"> 
+            <img src="./image/mobile.png" alt="mobile画面" style="display: block; margin: 0 auto; width: 30vw; height: 100vh; object-fit: cover; cursor: pointer;" class="image">
+    
+            <img src="./image/mobile.png" alt="mobile画面" style="display: block; margin: 0 auto; width: 50%w; height: 50%; object-fit: cover; cursor: pointer;" class="image" id="mobileImage">
             <h2>そしていきたい動画は以下の範囲です</h2>
            <h3>PC画面↓</h3>
             <img src="./image/PC2.png" alt="pc画面" style="display: block; margin: 0 auto; width: 50vw; height: 50vh; object-fit: cover; cursor: pointer;" class="image">
-
+            <img src="./image/PC2.png" alt="pc画面" style="display: block; margin: 0 auto; width: 50%; height: 50%; object-fit: cover; cursor: pointer;" class="image"  id="mobileImage">
+    
             <h3>mobile画面↓</h3>
             <img src="./image/mobile2.png" alt="mobile画面" style="display: block; margin: 0 auto; width: 30vw; height: 100vh; object-fit: cover; cursor: pointer;" class="image"> 
+            <img src="./image/mobile2.png" alt="mobile画面" style="display: block; margin: 0 auto; width: 50%; height: 50%; object-fit: cover; cursor: pointer;" class="image"   id="mobileImage">
 <div style="display: flex; align-items: center;">
     <img src="./image/no.png" alt="ハンバーガー説明" style="width: 10vw; height: 12vh; object-fit: cover; cursor: pointer;" class="image"">
     <span style="margin-left: 10px;">「オプションメニュー」または「トグルメニュー」と呼ばれることがありますが、一般的には「ハンバーガーメニュー」これを押すことでメニューが開けます。</span>
