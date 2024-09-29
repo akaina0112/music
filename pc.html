@@ -226,12 +226,12 @@ function changeLink(id) {
 function displayText() {
   const loader = document.querySelector('.loader');
   const loaderVideo = document.getElementById('loaderVideo');
-
+  const menu = document.querySelector('.menu');
   loader.style.display = 'block'; // ローダーを表示
   document.body.style.overflow = 'hidden'; // スクロールを禁止
-
   loaderVideo.onended = function() {
     loader.style.display = 'none'; // ローダーを非表示にする
+    
     document.body.style.overflow = 'auto'; // スクロールを再度有効に
     createTable(); // テーブルを作成
   };
