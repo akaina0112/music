@@ -279,12 +279,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
     function checkScreenSize() {
         const pcImages = [
-            document.getElementById('pcImage'),[
-            document.getElementById('mobileImage'),
+            document.getElementById('pcImage'), // PC用
+            document.getElementById('mobileImage') // PC表示用
         ];
-        const mobileImages = 
-            document.getElementById('pcImage2')
-            document.getElementById('mobileImage2')
+        const mobileImages = [
+            document.getElementById('mobilePcImage'), // mobile用
+            document.getElementById('mobileMobileImage') // mobile表示用
         ];
         
         if (window.innerWidth <= 768) {
@@ -299,5 +299,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', checkScreenSize);
     window.addEventListener('load', checkScreenSize);
 </script>
+
 </body>
 </html>
