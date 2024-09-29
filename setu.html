@@ -7,15 +7,7 @@
 <meta name="description" content="説明サイト、ライフガードのオリジナルの説明サイトです。ただし更新が遅いです。">
  
     <style type="text/css">
-        /* スタイル設定 */
-        @media (max-width: 768px) {
-    #image1 {
-        display: none; /* すべての画像を非表示 */
-    }
-    #mobileImage {
-        display: block; /* スマホ用画像のみ表示 */
-    }
-}
+
    @font-face {
       font-family: 'akaina';
       src: url('fonts/setofont.ttf') format('truetype'),
@@ -285,5 +277,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
     </script>
+    <script>
+    function checkScreenSize() {
+        const image1 = document.getElementById('image1'); // IDを変更
+        const mobileImage = document.getElementById('mobileImage');
+        if (window.innerWidth <= 768) {
+            image1.style.display = 'none';
+            mobileImage.style.display = 'block';
+        } else {
+            image1.style.display = 'block';
+            mobileImage.style.display = 'none';
+        }
+    }
+
+    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener('load', checkScreenSize);
+</script>
 </body>
 </html>
