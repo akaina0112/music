@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>説明サイト</title>
+<meta name="description" content="説明サイト、ライフガードのオリジナルの説明サイトです。ただし更新が遅いです。">
+ 
+    <style type="text/css">
+        /* スタイル設定 */
+   @font-face {
+      font-family: 'akaina';
+      src: url('fonts/setofont.ttf') format('truetype'),
+           url('fonts/setofont-ex.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+*{
+font-family: 'akaina', sans-serif;
+}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'akaina', sans-serif;
+            overflow-x: hidden; /* 横スクロールを無効化 */
+        }
+　　　　p{
+         color: #e8c0c0;
+         text-shadow: 0 0 1.6px #e8c0c0,0 0 5px #000;
+       }
+
+        .menu {
+            position: fixed;
+            bottom: 20px; /* 右下に配置 */
+            right: 20px;  /* 右下に配置 */
+            display: flex;
+            flex-direction: column;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+            transition: transform 250ms ease;
+        }
+
+        .menu span {
+            display: block;
+            width: 100%;
+            height: 5px; /* 幅を調整 */
+            background-color: #444; /* 色を指定 */
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        #menu:checked ~ .menu {
+            background-color: transparent;
+            transform: rotate(360deg);
+        }
+
+        #menu:checked ~ .menu span:nth-of-type(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        #menu:checked ~ .menu span:nth-of-type(2) {
+            display: none;
+        }
+
+        #menu:checked ~ .menu span:nth-of-type(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        .nav {
+            position: fixed;
+            top: -100px; /* 初期位置を画面外に設定 */
+            left: 0;
+            width: 100%; /* 横幅を全体に */
+            height: 100px; /* 高さを調整 */
+            background-color: rgba(255, 255, 255, 0.8); /* ナビゲーションの色 */
+            transition: top 250ms ease; /* スライドインのトランジション */
+            z-index: 100;
+            display: flex; /* フレックスボックスで横並びにする */
+            justify-content: space-around; /* 均等に配置 */
+            align-items: center; /* 縦方向に中央揃え */
+        }
+
+        #menu:checked ~ .nav {
+            top: 0; /* メニュー表示時にスライドイン */
+        }
+
+        .nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* 一列に並べる */
+            justify-content: space-around; /* 均等配置 */
+            width: 100%; /* 幅を100%に */
+        }
+
+        .nav li {
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav li:hover {
+  color: #cc2e72;
+  text-shadow: 0 0 10px #cc2e72,0 0 15px #cc2e72;
+  padding: 20px;^
+  text-align: center;
+  letter-spacing: 0.2em;
+        }
+.mann {
+    text-align: center; /* テキストを中央に揃える */
+}
+
+video {
+    pointer-events: none; /* ビデオに対するすべてのポインターイベントを無効化 */
+}
+   .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* 動画は最背面に配置 */
+    }
+.box28 {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: solid 2px #FFC107; /* 濃い黄色のボーダー */
+    position: relative;
+    margin: 2em 0;
+    padding: 5px 10px; /* 上下のパディングを小さくして文字に合わせる */
+    display: inline-block; /* 要素の幅を内容に合わせる */
+}
+
+.box28 .box-title {
+    text-align: center; /* テキストを中央に揃える */
+    position: absolute;
+    top: 0%; /* 縦中央に配置 */
+    left: 50%; /* 横中央に配置 */
+    transform: translate(-50%, -50%); /* 自身の幅の半分だけ左上にずらす */
+    padding: 5px 9px; /* 上下のパディングを設定 */
+    font-size: 17px; /* フォントサイズ */
+    background-color: rgba(255, 193, 7, 0.5);
+   /* background: #FFC107; /* 背景色 */
+    color: #ffffff; /* 文字色 */
+    font-weight: bold; /* 太字 */
+}
+
+.box28 p {
+    color: #63cc2e;
+    text-shadow: 0 0 0 #63cc2e,0 0 1px #000;
+    margin: 0; 
+    padding: 0;
+}
+    .n,img,p {
+      display: block; /* ブロック要素にする */
+    }
+    #n{
+color: rgba(255, 255, 255, 0);"
+   }
+        .modal {
+            display: none; /* 初期状態では非表示 */
+            position: fixed;
+            z-index: 1000; /* 前面に表示 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* 半透明の背景 */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+.h3 {
+    margin: -6px 0; /* 上下に20pxの隙間を設定 */
+}
+    </style>
+</head>
+<body>
+<video class="bg-video" autoplay loop muted>
+  <source src="./image/ded.mp4" type="video/mp4">
+  お使いのブラウザは動画をサポートしていません。
+</video>
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./ap.html">アプデ</a></li>
+            <li><a href="./setu.html">説明</a></li>
+            <li><a href="./life.html">ライフガード</a></li>
+        </ul>
+    </nav>
+<div class="mann"> 
+<div class="box28">
+    <span class="box-title">このサイトの説明</span>
+    <span class="n" id='n'>akaina0809</span>
+    <p>まずは初めにこのサイトはPCとスマホで紹介サイトが異なります。</p>
+　　　<p>以下は同じです画像でPCとmobileを表示しております。</p>
+            <h3 class="h3">homeを押すとPCはPCサイトにmobileはmobileサイトに</h3>
+　　　　　　<h3 class="h3">飛ばされます。ウイルスなどはないのでご安心を。</h3>
+　　　　　　<h3 class="h3">右下を押すとバーが表示され選択できます。</h3>
+           <h3>PC画面↓</h3>
+            <img src="./image/PC.png" alt="pc画面" style="display: block; margin: 0 auto; width: 50vw; height: 50vh; object-fit: cover; cursor: pointer;" class="image">
+
+            <h3>mobile画面↓</h3>
+            <img src="./image/mobile.png" alt="mobile画面" style="display: block; margin: 0 auto; width: 30vw; height: 100vh; object-fit: cover; cursor: pointer;" class="image"> 
+            <h2>そしていきたい動画は以下の範囲です</h2>
+           <h3>PC画面↓</h3>
+            <img src="./image/PC2.png" alt="pc画面" style="display: block; margin: 0 auto; width: 50vw; height: 50vh; object-fit: cover; cursor: pointer;" class="image">
+
+            <h3>mobile画面↓</h3>
+            <img src="./image/mobile2.png" alt="mobile画面" style="display: block; margin: 0 auto; width: 30vw; height: 100vh; object-fit: cover; cursor: pointer;" class="image"> 
+<div style="display: flex; align-items: center;">
+    <img src="./image/no.png" alt="ハンバーガー説明" style="width: 10vw; height: 12vh; object-fit: cover; cursor: pointer;" class="image"">
+    <span style="margin-left: 10px;">「オプションメニュー」または「トグルメニュー」と呼ばれることがありますが、一般的には「ハンバーガーメニュー」これを押すことでメニューが開けます。</span>
+
+</div>
+
+</div>
+
+            <!-- モーダル -->
+            <div class="modal" id="myModal">
+                <span style="color: white; cursor: pointer; position: absolute; top: 20px; right: 40px; font-size: 30px;" id="close">&times;</span>
+                <img src="" alt="拡大画像" id="modalImage">
+            </div>
+</div>
+</div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('.image');
+    const modal = document.getElementById('myModal');
+    const modalImage = document.getElementById('modalImage');
+    const close = document.getElementById('close');
+
+    images.forEach((img) => {
+        img.onclick = function() {
+            modal.style.display = 'flex';
+            modalImage.src = this.src;
+            document.body.style.overflow = 'hidden'; // スクロール禁止
+        }
+    });
+
+    close.onclick = function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // スクロール許可
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // スクロール許可
+        }
+    }
+});
+
+    </script>
+</body>
+</html>
