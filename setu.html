@@ -280,11 +280,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkScreenSize() {
         const pcImages = [
             document.getElementById('pcImage'), // PC用
-            document.getElementById('mobileImage') // PC表示用
+            document.getElementById('mobileImage'), // PC表示用
+            document.getElementById('pcImage2'), // 追加のPC用
+            document.getElementById('mobileImage2') // 追加のPC表示用
         ];
         const mobileImages = [
             document.getElementById('mobilePcImage'), // mobile用
-            document.getElementById('mobileMobileImage') // mobile表示用
+            document.getElementById('mobileMobileImage'), // mobile表示用
+            document.getElementById('mobilePcImage2'), // 追加のmobile用
+            document.getElementById('mobileMobileImage2') // 追加のmobile表示用
         ];
         
         if (window.innerWidth <= 768) {
@@ -299,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', checkScreenSize);
     window.addEventListener('load', checkScreenSize);
 </script>
+
 
 </body>
 </html>
