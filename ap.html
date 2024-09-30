@@ -137,9 +137,7 @@ body {
   text-align: center;
   letter-spacing: 0.2em;
         }
-.accordion-003 summary, .accordion-003 p{
-　  background-color: rgba(55, 140, 189, 0.6);
-}
+
 .accordion-003 {
     max-width: 500px;
     margin-bottom: 7px;
@@ -175,10 +173,6 @@ body {
     transition: transform .3s;
 }
 
-.accordion-003[open] summary::after {
-    background-color: rgba(55, 140, 189, 0.6);
-    transform: rotate(225deg);
-}
 
 .accordion-003 p {
 　  background-color: rgba(55, 140, 189, 0.6);
@@ -194,8 +188,14 @@ body {
 .accordion-003[open] p {
 　  background-color: rgba(55, 140, 189, 0.6);
     transform: none;
-    opacity: 2;
+    opacity: 1;
 }
+.accordion-003[open] summary::after {
+    background-color: rgba(55, 140, 189, 0.6);
+    transform: rotate(225deg);
+　　outline: none; 
+}
+
 .mann {
     display: flex;
     justify-content: center; /* 横方向の中央揃え */
