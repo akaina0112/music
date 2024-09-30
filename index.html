@@ -14,12 +14,13 @@
 
             // ユーザーエージェントか画面縦幅のいずれかがモバイル条件に合致すればモバイルと判定
             let deviceType = '';
+       setTimeout(function() {
             if (isMobileUA || isMobileHeight) {
                 deviceType = 'モバイルまたはタブレット';
             } else {
                 deviceType = 'PC';
             }
-
+　　　　　}, 3000); // 3秒 (3000ミリ秒)
             // 機種名を表示
             document.getElementById('device-name').innerText = `あなたの認識デバイス: ${deviceType} `;
 
