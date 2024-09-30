@@ -138,64 +138,6 @@ body {
   letter-spacing: 0.2em;
         }
 
-.accordion-003 {
-    max-width: 500px;
-    margin-bottom: 7px;
-    border-bottom: 2px solid #926868;
-　  background-color: rgba(55, 140, 189, 0.6);
-}
-
-.accordion-003 summary {
-    
-　  background-color: rgba(55, 140, 189, 0.6);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding: 1em 2em;
-    color: #333333;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.accordion-003 summary::-webkit-details-marker {
-    display: none;
-}
-
-.accordion-003 summary::after {
-    transform: translateY(-25%) rotate(45deg);
-    width: 7px;
-    height: 7px;
-    margin-left: 10px;
-    border-bottom: 3px solid #333333b3;
-    border-right: 3px solid #333333b3;
-    content: '';
-    transition: transform .3s;
-}
-
-
-.accordion-003 p {
-　  background-color: rgba(55, 140, 189, 0.6);
-    transform: translateY(-10px);
-    opacity: 0;
-    margin: 0;
-    padding: .3em 2em 1.5em;
-    color: #e8c0c0;
-    text-shadow: 0 0 4px #e8c0c0,0 0 3px #000;
-    transition: transform .5s, opacity .5s;
-}
-
-.accordion-003[open] p {
-　  background-color: rgba(55, 140, 189, 0.6);
-    transform: none;
-    opacity: 1;
-}
-.accordion-003[open] summary::after {
-    background-color: rgba(55, 140, 189, 0.6);
-    transform: rotate(225deg);
-　　outline: none; 
-}
-
 .mann {
     display: flex;
     justify-content: center; /* 横方向の中央揃え */
@@ -218,58 +160,57 @@ video {
       object-fit: cover;
       z-index: -3; /* 動画は最背面に配置 */
     }
-.heading-12 {
+        .accordion-008 {
+    max-width: 500px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 7px 15px -5px rgb(0 0 0 / 5%);
+    background-color: rgba(55, 140, 189, 0.6) !important; /* 修正: スペースを削除 */
+}
+
+.accordion-008 summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
-    width: 290px;
-    margin: 0 auto;
-    padding: .5em .7em;
-    background-color: #2589d0;
-    color: #fff;
-    text-align: center;
+    padding: 1em 2em;
+    color: #333333;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-.heading-12::before,
-.heading-12::after {
-    position: absolute;
-    bottom: -10px;
-    z-index: -1;
-    border-style: solid;
-    border-color: #1579c0;
+.accordion-008 summary::-webkit-details-marker {
+    display: none;
+}
+
+.accordion-008 summary::after {
+    transform: translateY(-25%) rotate(45deg);
+    width: 7px;
+    height: 7px;
+    margin-left: 10px;
+    border-bottom: 3px solid #333333b3;
+    border-right: 3px solid #333333b3;
     content: '';
+    transition: transform .3s;
 }
 
-.heading-12::before {
-    left: -30px;
-    border-width: 25px 25px 25px 15px;
-    border-left-color: transparent;
+.accordion-008[open] summary::after {
+    transform: rotate(225deg);
 }
 
-.heading-12::after {
-    right: -30px;
-    border-width: 25px 15px 25px 25px;
-    border-right-color: transparent;
+.accordion-008 p {
+    transform: translateY(-10px);
+    opacity: 0;
+    margin: 0;
+    padding: .3em 2em 1.5em;
+    color: #333333;
+    transition: transform .5s, opacity .5s;
 }
 
-.heading-12 span::before,
-.heading-12 span::after {
-    position: absolute;
-    bottom: -10px;
-    width: 10px;
-    height: 10px;
-    background-color: #002970;
-    content: '';
+.accordion-008[open] p {
+    transform: none;
+    opacity: 1;
 }
-
-.heading-12 span::before {
-    left: 0;
-    clip-path: polygon(0 0, 100% 0%, 100% 100%);
-}
-
-.heading-12 span::after {
-    right: 0;
-    clip-path: polygon(0 0, 100% 0%, 0% 100%);
-}
-
     </style>
 </head>
 <body id="body">
@@ -294,8 +235,8 @@ video {
     </nav>
 <div class="mann"> 
 <h1 id="h1">サイトアップデート</h1>
-    <div class="aka">
-<details class="accordion-003">
+
+<details class="accordion-008">
     <summary><h2 class="heading-12"><span>2024/09/28</span></h2></summary>
 <div class="aka">
     <p>サイトを作成しオリジナルサイトを公開</p>
@@ -305,7 +246,7 @@ video {
     <p>・背景を動画に変更</p>
 </div>
 </details>
-<details class="accordion-003">
+<details class="accordion-008">
     <summary><h2 class="heading-12"><span>2024/09/29</span></h2></summary>
 <div class="aka">
     <p>サムネとタイトルをYouTubeから習得</p>
