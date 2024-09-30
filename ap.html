@@ -14,11 +14,27 @@
       font-weight: normal;
       font-style: normal;
     }
+　　h1{
+        color: #FFF;       /* 文字色を白に変更 */
+  font-family: akaina; /* ネオン風のフォントを指定(ダウンロードしたもの) */
+  animation: flash 1s infinite; /* アニメーションflashを1秒ごとに繰り返す */
+  }
+@keyframes flash {
+  0%, 100% {
+    /* 明るく光るよう影を重ねる */
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  }
+  50% {
+    /* 淡く光るよう影を重ねる */
+    text-shadow: 0 0 10px #fff, 0 0 20px #fcfcfc, 0 0 30px #fcfcfc, 0 0 40px #fc00de;
+  }
+}
         body {
             margin: 0;
             padding: 0;
             font-family: 'akaina', sans-serif;
             overflow-x: hidden; /* 横スクロールを無効化 */
+　　　　　　background-color: rgba(55, 140, 189, 0.6);
         }
 　　　　.aka{
     background-color: rgba(55, 140, 189, 0.6);
