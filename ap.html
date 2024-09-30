@@ -14,7 +14,7 @@
       font-weight: normal;
       font-style: normal;
     }
-　　h1{
+　　#h1{
         color: #FFF　!important;       /* 文字色を白に変更 */
   font-family: akaina　!important; /* ネオン風のフォントを指定(ダウンロードしたもの) */
   animation: flash 1s infinite　!important; /* アニメーションflashを1秒ごとに繰り返す */
@@ -30,6 +30,13 @@
   }
 }
         body {
+            margin: 0;
+            padding: 0;
+            font-family: 'akaina', sans-serif;
+            overflow-x: hidden; /* 横スクロールを無効化 */
+　　　　　　background-color: rgba(55, 140, 189, 0.6)　!important;
+        }
+         #body {
             margin: 0;
             padding: 0;
             font-family: 'akaina', sans-serif;
@@ -261,7 +268,7 @@ video {
 
     </style>
 </head>
-<body>
+<body id="body">
 <video class="bg-video" autoplay loop muted>
   <source src="./image/ded.mp4" type="video/mp4">
   お使いのブラウザは動画をサポートしていません。
@@ -282,7 +289,7 @@ video {
         </ul>
     </nav>
 <div class="mann"> 
-<h1>サイトアップデート</h1>
+<h1 id="h1">サイトアップデート</h1>
 <details class="accordion-003">
     <summary><h2 class="heading-12"><span>2024/09/28</span></h2></summary>
 
