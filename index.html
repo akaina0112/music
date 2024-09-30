@@ -6,19 +6,39 @@
     <title>デバイス判別</title>
     <script>
         function loadPage() {
-            // ユーザーエージェントをチェックしてデバイスを判別
-            const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-            if (isMobile) {
-                // スマートフォンまたはタブレットの場合
-                window.location.href = 'mobile.html';
+            // ユーザーエージェントをチェックしてモバイルかを判別
+            const isMobileUA = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+            // 画面の縦幅をチェック
+            const screenHeight = window.innerHeight;
+            const isMobileHeight = screenHeight <= 768;
+
+            // ユーザーエージェントか画面縦幅のいずれかがモバイル条件に合致すればモバイルと判定
+            let deviceType = '';
+            if (isMobileUA || isMobileHeight) {
+                deviceType = 'モバイルまたはタブレット';
             } else {
-                // PCの場合
-                window.location.href = 'pc.html';
+                deviceType = 'PC';
             }
+
+            // 機種名を表示
+            document.getElementById('device-name').innerText = `あなたのデバイス: ${deviceType} (${navigator.userAgent})`;
+
+            // 3秒後にページをリダイレクト
+            setTimeout(function() {
+                if (isMobileUA || isMobileHeight) {
+                    window.location.href = 'mobile.html';
+                } else {
+                    window.location.href = 'pc.html';
+                }
+            }, 3000); // 3秒 (3000ミリ秒)
         }
+
+        // ページが読み込まれたときにloadPageを実行
+        window.onload = loadPage;
     </script>
 </head>
-<body onload="loadPage()">
+<body>
     <h1>ページを読み込んでいます...</h1>
+    <p id="device-name">デバイスを判別中...</p>
 </body>
 </html>
