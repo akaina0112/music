@@ -214,13 +214,17 @@ function displayText() {
   loader.style.display = 'block'; // ローダーを表示
   menu.style.display = 'none';// ローダーを表示
   document.body.style.overflow = 'hidden'; // スクロールを禁止
-
+  // iPhone対応のため再生を明示的に要求
+  loaderVideo.play().catch(err => {
+    console.warn("動画の自動再生に失敗:", err);
+  });
   loaderVideo.onended = function() {
     loader.style.display = 'none'; // ローダーを非表示にする
     document.body.style.overflow = 'auto'; // スクロールを再度有効に
     createTable(); // テーブルを作成
   };
 }
+
 
     window.onload = function() {
       displayText();
@@ -244,16 +248,17 @@ function displayText() {
         </ul>
     </nav>
 <div class="loader"> 
-  <video class="loader-video" autoplay muted id="loaderVideo">
+  <video class="loader-video" autoplay muted playsinline id="loaderVideo">
     <source src="image/load2.mp4" type="video/mp4">
     お使いのブラウザは動画をサポートしていません。
   </video>
 </div>
 
-<video class="bg-video" autoplay loop muted>
+<video class="bg-video" autoplay loop muted playsinline>
   <source src="image/ded.mp4" type="video/mp4">
   お使いのブラウザは動画をサポートしていません。
 </video>
+
 
 <div class="content" id="content">
   <!-- 動的に生成されるテーブルがここに挿入されます -->
