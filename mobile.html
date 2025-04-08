@@ -260,8 +260,9 @@ function createTable() {
 
 
 
-function displayText() {
-  const loader = document.querySelector('.loader');
+
+    window.onload = function() {
+        const loader = document.querySelector('.loader');
   const menu = document.querySelector('.menu');
   const loaderVideo = document.getElementById('loaderVideo');
 
@@ -277,11 +278,6 @@ function displayText() {
     document.body.style.overflow = 'auto'; // スクロールを再度有効に
     createTable(); // テーブルを作成
   };
-}
-
-
-    window.onload = function() {
-      displayText();
     }
   </script>
 
