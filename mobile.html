@@ -261,24 +261,27 @@ function createTable() {
 
 
 
-    window.onload = function() {
-        const loader = document.querySelector('.loader');
+window.onload = function() {
+  const loader = document.querySelector('.loader');
   const menu = document.querySelector('.menu');
   const loaderVideo = document.getElementById('loaderVideo');
 
   loader.style.display = 'block'; // ローダーを表示
-  menu.style.display = 'none';// ローダーを表示
+  menu.style.display = 'none'; // メニューを非表示にする
   document.body.style.overflow = 'hidden'; // スクロールを禁止
+
   // iPhone対応のため再生を明示的に要求
   loaderVideo.play().catch(err => {
     console.warn("動画の自動再生に失敗:", err);
   });
-  loaderVideo.onended = function() {
+
+  // 動画が終了したときに発火するイベントリスナーを設定
+  loaderVideo.addEventListener('ended', function() {
     loader.style.display = 'none'; // ローダーを非表示にする
     document.body.style.overflow = 'auto'; // スクロールを再度有効に
     createTable(); // テーブルを作成
-  };
-    }
+  });
+};
   </script>
 
 </head>
