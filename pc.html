@@ -300,6 +300,7 @@
       notificationMessage2.textContent = 'Right click is disabled.';
       notification.style.display = 'block';
       notification.style.top = '20px';
+      
     }
 
     // OKボタンをクリックしたときの処理
@@ -310,6 +311,16 @@
         notification.style.display = 'none';
       }, 510);
     });
+    // 左クリックが押されたときの処理
+document.addEventListener('mousedown', function(event) {
+  if (event.button === 0) {  // 0 は左クリックを意味する
+    const notification = document.getElementById('notification');
+    notification.style.top = '-100px';  // 通知を上にスライドさせる
+    setTimeout(() => {
+      notification.style.display = 'none';  // アニメーション後に非表示にする
+    }, 510);  // 510ms後に非表示にする
+  }
+});
   }
     const links = {
       "row1": { 
