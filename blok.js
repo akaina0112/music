@@ -113,7 +113,7 @@ window.onload = function() {
         margin-top: 10px;
         padding: 10px 20px;
         background-color: transparent;
-        background-image: url('https://github.com/akaina0112/Test/blob/82c44afa420b29c80bc691dfc8f7753b05a0f82a/cat.gif');
+        background-image: url('https://raw.githubusercontent.com/akaina0112/Test/82c44afa420b29c80bc691dfc8f7753b05a0f82a/cat.gif');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
