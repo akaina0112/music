@@ -2,49 +2,32 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ビューポートメタタグを追加 -->
   <title>[mobile]オリジナル曲　－　ライフガード</title>
-  <meta name="description" content="モバイル版サイト、ライフガードのオリジナルをまとめたサイトです。ただし更新が遅いです。PCはhttps://akaina0112.github.io/music/pc.htmlです。">
+　<meta name="description" content="モバイル版サイト、ライフガードのオリジナルをまとめたサイトです。ただし更新が遅いです。PCはhttps://akaina0112.github.io/music/pc.htmlです。">
   <style type="text/css">
-    /* モーダルスタイル */
-    #confirmationModal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(255, 255, 255, 0.9);
-      border: 1px solid #ccc;
-      padding: 20px;
-      z-index: 1000;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    #confirmationModal button {
-      margin: 5px;
-    }
-
-    html {
-      font-family: 'akaina', sans-serif; /* フォントの適用 */
-    }
-    video {
-      pointer-events: none; /* ビデオに対するすべてのポインターイベントを無効化 */
-    }
+heml {
+   font-family: 'akaina', sans-serif; /* フォントの適用 */
+}
+video {
+    pointer-events: none; /* ビデオに対するすべてのポインターイベントを無効化 */
+}
     img {
-      pointer-events: none; /* 画像に対するすべてのポインターイベントを無効化 */
-    }
-    .text {
-      font-family: 'akaina', sans-serif; /* フォントの適用 */
-      background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
-      padding: 10px; /* 内側の余白 */
-      width: 50% !important;
-      height: 100px !important;
-      border-radius: 5px; /* 角を丸く */
-      font-weight: bold; /* 太字 */
-      text-align: left; /* 左揃え */
-      box-sizing: border-box; /* パディングを含めたサイズ */
-      overflow: hidden; /* オーバーフロー防止 */
-    }
+    pointer-events: none; /* 画像に対するすべてのポインターイベントを無効化 */
+}
+.text {
+  font-family: 'akaina', sans-serif; /* フォントの適用 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
+  padding: 10px; /* 内側の余白 */
+  width: 50% !important;
+  height: 100px !important;
+  border-radius: 5px; /* 角を丸く */
+  font-weight: bold; /* 太字 */
+  text-align: left; /* 左揃え */
+  box-sizing: border-box; /* パディングを含めたサイズ */
+  overflow: hidden; /* オーバーフロー防止 */
+}
+
 
     @font-face {
       font-family: 'akaina';
@@ -77,18 +60,18 @@
       height: auto; /* 高さを自動調整 */
     }
     .highlight {
-      color: #e6b422;
-      text-shadow: 0 0 1.6px #e6b422,0 0 5px #000;
-      padding: 20px;
-      text-align: center;
-      letter-spacing: 0.1em;
+  color: #e6b422;
+  text-shadow: 0 0 1.6px #e6b422,0 0 5px #000;
+  padding: 20px;
+  text-align: center;
+  letter-spacing: 0.1em;
     }
     .color-red {
-      color: #a200f2;
-      text-shadow: 0 0 10px #a200f2,0 0 15px #a200f2;
-      padding: 20px;
-      text-align: center;
-      letter-spacing: 0.2em;
+  color: #a200f2;
+  text-shadow: 0 0 10px #a200f2,0 0 15px #a200f2;
+  padding: 20px;
+  text-align: center;
+  letter-spacing: 0.2em;
     }
     .n {
       display: block;
@@ -111,10 +94,10 @@
     }
     .loader-video {
       z-index: 999999999;
-      width: 100%; /* 幅を100%に設定 */
-      height: 100%; /* 高さを100%に設定 */
-      object-fit: cover; /* アスペクト比を維持しつつ、画面全体を覆う */
-    }
+  width: 100%; /* 幅を100%に設定 */
+  height: 100%; /* 高さを100%に設定 */
+  object-fit: cover; /* アスペクト比を維持しつつ、画面全体を覆う */
+}
     .loader p {
       font-size: 20px;
       margin: 0;
@@ -129,159 +112,156 @@
         font-size: 16px; /* ローダーのテキストサイズも調整 */
       }
     }
-    .menu {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      flex-direction: column;
-      width: 50px;
-      height: 50px;
-      background-color: #fff;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 200;
-      transition: transform 250ms ease;
-    }
-    .menu span {
-      display: block;
-      width: 100%;
-      height: 5px;
-      background-color: #444;
-      margin: 5px 0;
-      transition: transform 250ms ease;
-    }
-    #menu {
-      display: none;
-    }
-    #menu:checked ~ .menu {
-      background-color: transparent;
-      transform: rotate(360deg);
-    }
-    #menu:checked ~ .menu span:nth-of-type(1) {
-      transform: translateY(10px) rotate(45deg);
-    }
-    #menu:checked ~ .menu span:nth-of-type(2) {
-      display: none;
-    }
-    #menu:checked ~ .menu span:nth-of-type(3) {
-      transform: translateY(-10px) rotate(-45deg);
-    }
-    .nav {
-      position: fixed;
-      top: -100px;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background-color: rgba(255, 255, 255, .8);
-      transition: top 250ms ease;
-      z-index: 100;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-    #menu:checked ~ .nav {
-      top: 0;
-    }
-    .nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-    }
-    .nav li {
-      padding: 15px 20px;
-      color: #fff;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-    .nav li:hover {
-      color: #cc2e72;
-      text-shadow: 0 0 10px #cc2e72, 0 0 15px #cc2e72;
-      padding: 20px;
-      text-align: center;
-      letter-spacing: .2em;
-    }
+.menu{position:fixed;bottom:20px;right:20px;flex-direction:column;width:50px;height:50px;background-color:#fff;border-radius:50%;cursor:pointer;z-index:200;transition:transform 250ms ease}.menu span{display:block;width:100%;height:5px;background-color:#444;margin:5px 0;transition:transform 250ms ease}#menu{display:none}#menu:checked~.menu{background-color:transparent;transform:rotate(360deg)}#menu:checked~.menu span:nth-of-type(1){transform:translateY(10px) rotate(45deg)}#menu:checked~.menu span:nth-of-type(2){display:none}#menu:checked~.menu span:nth-of-type(3){transform:translateY(-10px) rotate(-45deg)}.nav{position:fixed;top:-100px;left:0;width:100%;height:100px;background-color:rgba(255,255,255,.8);transition:top 250ms ease;z-index:100;display:flex;justify-content:space-around;align-items:center}#menu:checked~.nav{top:0}.nav ul{list-style-type:none;padding:0;margin:0;display:flex;justify-content:space-around;width:100%}.nav li{padding:15px 20px;color:#fff;text-decoration:none;text-transform:uppercase}.nav li:hover{color:#cc2e72;text-shadow:0 0 10px #cc2e72,0 0 15px #cc2e72;padding:20px;text-align:center;letter-spacing:.2em}
   </style>
   <script>
     const links = {
-      "row1": {
-        url: "https://www.youtube.com/watch?v=OMp9s9f4cnI",
-        description: "<span class='n'><h2>君と出会えた奇跡 / ライフガード</h2></span><h3><span class='n'>この曲は出会えたことに感謝していることを表しています。</span><span class='n'>君にというのは出逢えた人たちの事です。</span><span class='n'>ちなみに出逢えたは本来出会えたです。わざと出逢えたにしております。</span><span class='n'><span class='highlight'>公開日:2024/09/04</span></span></h3>"
+      "row1": { 
+        url: "https://www.youtube.com/watch?v=OMp9s9f4cnI", 
+        description: "<span class='n'><h2>君と出会えた奇跡 / ライフガード</h2></span><h3><span class='n'>この曲は出会えたことに感謝していることを表しています。</span><span class='n'>君にというのは出逢えた人たちの事です。</span><span class='n'>ちなみに出逢えたは本来出会えたです。わざと出逢えたにしております。</span><span class='n'><span class='highlight'>公開日:2024/09/04</span></span></h3>" 
       },
-      "row2": {
-        url: "https://www.youtube.com/watch?v=AkYCR-N9hbY",
-        description: "<span class='n'><h2>君の笑顔に心が奪われる</h2></span><h3><span class='n'>この曲は恋愛が元になっております。</span><span class='n'>私は男性女性関係なく恋愛します。</span><span class='n'>笑顔に心が奪われるは見惚れてしまうということです。</span><span class='n'><span class='highlight'>公開日:2024/09/17</span></span></h3>"
+      "row2": { 
+        url: "https://www.youtube.com/watch?v=AkYCR-N9hbY", 
+        description: "<span class='n'><h2>君の笑顔に心が奪われる</h2></span><h3><span class='n'>この曲は恋愛が元になっております。</span><span class='n'>私は男性女性関係なく恋愛します。</span><span class='n'>笑顔に心が奪われるは見惚れてしまうということです。</span><span class='n'><span class='highlight'>公開日:2024/09/17</span></span></h3>" 
       },
-      "row3": {
-        url: "https://www.youtube.com/watch?v=VJ9xUEWChWs",
-        description: "<span class='n'><h2>君と一緒に過ごす時間</h2></span><h3><span class='n'>この曲は一緒に過ごした時間を感謝する意味を込めています。</span><span class='n'>一緒に過ごせた時間は本当に幸せでした。</span><span class='n'><span class='highlight'>公開日:2024/09/26</span></span></h3>"
-      }
+      "row3": { 
+        url: "https://www.youtube.com/watch?v=i1jS16w7-18", 
+        description: "<span class='n'><h2>あなたに会えるまで</h2></span><h3><span class='n'>この曲は私の現状が元になっております。</span><span class='n'>私はネットやリアル関係なく会えるまでという言葉で表しています。</span><span class='n'>人生は何があるか誰にもわからないから人みんな仲良くしたいなという気持ちです。三日後に公開しましたが作成したのは<span class='colorred'>君の笑顔に心が奪われる</span>の前です。</span><span class='n'><span class='highlight'>公開日:2024/09/20</span></span></h3>" 
+      },
+      "row4": { 
+        url: "https://www.youtube.com/watch?v=pMHAWqqdGXI", 
+        description: "<span class='n'><h2>男の子らしく女の子らしく</h2></span><h3><span class='n'>この曲は私の周りの人が関係しております。</span><span class='n'>女の子なのに男の子みたいな子男の子なのに女の子みたいな人</span><span class='n'>けれど私はそれでいいやんと思いましたがキモイとか言ってる人がいたり<span class='n'>とある家族の親が女の子だから男の子だからと言っている姿を見たことがありイラっとしました。<span class='n'>女の子とか男の子とか関係なく自分らしく生きればいいのにね。</span></span></span><span class='n'><span class='highlight'>公開日:2024/09/24</span></span></h3>" 
+      },
+      "row5": { 
+        url: "https://www.youtube.com/watch?v=TUJX3bgp-jA", 
+        description: "<span class='n'><h2>私はあなたは</h2></span><h3><span class='n'>この曲は私の元大切な人が関係しております。</span><span class='n'>私は人間関係が嫌いです。</span><span class='n'>嘘ばっかなので嫌になりました。</span><span class='n'>この曲は私の人生や周りの人に人生を表しています。</span><span class='n'><span class='highlight'>公開日:2024/10/03</span></span></h3>" 
+      }/*,
+      "row6": { 
+        url: "https://www.youtube.com/watch?v=XDsv4cS1zn4", 
+        description: "<span class='n'><h2>Betrayal and Lies_ A Reflection</h2></span><h3><span class='n'>この曲は<span class='colorred'>私はあなたは</span>の英語です。</span><span class='n'><span class='highlight'>公開日:2024/10/03</span></span></h3>" 
+      }*/
     };
 
-    function changeLink(rowId) {
-      var modalContent = document.getElementById('modalContent');
-      var modalLink = document.getElementById('modalLink');
-      modalContent.innerHTML = links[rowId].description;
-      modalLink.href = links[rowId].url;
-      document.getElementById('confirmationModal').style.display = 'block';
+    const textToDisplay = [];
+    for (let i = 1; i <= 12; i++) {
+      textToDisplay.push(i.toString());
     }
 
-    function closeModal() {
-      document.getElementById('confirmationModal').style.display = 'none';
+    let tableCreated = false;
+
+function changeLink(id) {
+  const link = links[id];
+  if (link) {
+    // 確認ダイアログを表示
+    const userConfirmed = confirm(`このリンクを開いてもよろしいですか？\n${link.url}`);
+    if (userConfirmed) {
+      window.open(link.url, '_blank'); // ユーザーが確認した場合、リンクを開く
+    }
+  }
+}
+
+function createTable() {
+  if (tableCreated) return; // すでにテーブルが作成されている場合は何もしない
+  tableCreated = true; // テーブル作成フラグを立てる
+
+  const contentDiv = document.getElementById('content');
+  const table = document.createElement('table');
+  table.setAttribute('cellpadding', '0');
+  table.setAttribute('cellspacing', '0');
+  table.setAttribute('border', '0');
+  table.setAttribute('align', 'left');
+
+  for (const [id, link] of Object.entries(links)) {
+    const row = document.createElement('tr');
+    row.setAttribute('id', id);
+    row.setAttribute('onclick', `changeLink('${id}')`);
+
+    const imgCell = document.createElement('td');
+    imgCell.setAttribute('valign', 'top');
+    imgCell.setAttribute('class', 'img');
+    const img = document.createElement('img');
+    img.setAttribute('src', `https://img.youtube.com/vi/${link.url.split('v=')[1]}/hqdefault.jpg`);
+    imgCell.appendChild(img);
+
+    const descriptionCell = document.createElement('td');
+    descriptionCell.setAttribute('width', '250');
+    descriptionCell.setAttribute('valign', 'top');
+    descriptionCell.setAttribute('class', 'text');
+    
+    // 背景画像の設定を削除
+    // descriptionCell.style.backgroundImage = `url(${thumbnailUrl})`;
+    
+    descriptionCell.innerHTML = link.description; // 説明を設定 (innerHTMLを使用)
+
+    row.appendChild(imgCell);
+    row.appendChild(descriptionCell);
+    table.appendChild(row);
+  }
+
+  contentDiv.appendChild(table);
+  document.querySelector('.loader').style.zIndex = '-999999'; // ロード画面のz-indexを変更
+  document.body.style.overflow = 'auto'; // スクロールを有効に
+  document.querySelector('.menu').style.display = 'flex'; // ロード画面のz-indexを変更
+}
+
+
+
+function displayText() {
+  const loader = document.querySelector('.loader');
+  const menu = document.querySelector('.menu');
+  const loaderVideo = document.getElementById('loaderVideo');
+
+  loader.style.display = 'block'; // ローダーを表示
+  menu.style.display = 'none';// ローダーを表示
+  document.body.style.overflow = 'hidden'; // スクロールを禁止
+  // iPhone対応のため再生を明示的に要求
+  loaderVideo.play().catch(err => {
+    console.warn("動画の自動再生に失敗:", err);
+  });
+  loaderVideo.onended = function() {
+    loader.style.display = 'none'; // ローダーを非表示にする
+    document.body.style.overflow = 'auto'; // スクロールを再度有効に
+    createTable(); // テーブルを作成
+  };
+}
+
+
+    window.onload = function() {
+      displayText();
     }
   </script>
 </head>
 <body>
-  <!-- 背景動画 -->
-  <video class="bg-video" autoplay muted loop>
-    <source src="https://akaina0112.github.io/Test/bgm.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./ap.html">アプデ</a></li>
+            <li><a href="./setu.html">説明</a></li>
+            <li><a href="./life.html">ライフガード</a></li>
+        </ul>
+    </nav>
+<div class="loader"> 
+  <video class="loader-video" autoplay muted playsinline id="loaderVideo">
+    <source src="image/load2.mp4" type="video/mp4">
+    お使いのブラウザは動画をサポートしていません。
   </video>
+</div>
 
-  <!-- ローダー -->
-  <div class="loader">
-    <div class="loader-video">
-      <video autoplay muted loop>
-        <source src="https://akaina0112.github.io/Test/loader.mp4" type="video/mp4">
-      </video>
-    </div>
-    <p>読み込み中...</p>
-  </div>
+<video class="bg-video" autoplay loop muted playsinline>
+  <source src="image/ded.mp4" type="video/mp4">
+  お使いのブラウザは動画をサポートしていません。
+</video>
 
-  <!-- メニュー -->
-  <div class="menu" onclick="document.getElementById('menu').checked = !document.getElementById('menu').checked;">
-    <span></span><span></span><span></span>
-  </div>
-  <input type="checkbox" id="menu">
-  <nav class="nav">
-    <ul>
-      <li><a href="#">メニュー1</a></li>
-      <li><a href="#">メニュー2</a></li>
-      <li><a href="#">メニュー3</a></li>
-    </ul>
-  </nav>
 
-  <!-- コンテンツ -->
-  <div class="content">
-    <div class="highlight">
-      <h1>ライフガード オリジナル曲</h1>
-    </div>
-    <div class="text">
-      <button onclick="changeLink('row1')">君と出会えた奇跡</button>
-      <button onclick="changeLink('row2')">君の笑顔に心が奪われる</button>
-      <button onclick="changeLink('row3')">君と一緒に過ごす時間</button>
-    </div>
-  </div>
-
-  <!-- モーダル -->
-  <div id="confirmationModal">
-    <div id="modalContent"></div>
-    <a id="modalLink" target="_blank">
-      <button>リンクを開く</button>
-    </a>
-    <button onclick="closeModal()">閉じる</button>
-  </div>
+<div class="content" id="content">
+  <!-- 動的に生成されるテーブルがここに挿入されます -->
+</div>
 </body>
 </html>
