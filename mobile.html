@@ -102,23 +102,7 @@ video {
       font-size: 20px;
       margin: 0;
     }
-        /* モーダルスタイル */
-    #confirmationModal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(255, 255, 255, 0.9);
-      border: 1px solid #ccc;
-      padding: 20px;
-      z-index: 1000;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    #confirmationModal button {
-      margin: 5px;
-    }
+
     /* モバイルスタイル */
     @media (max-width: 768px) {
       .text {
@@ -164,7 +148,7 @@ video {
     }
 
     let tableCreated = false;
-/*
+
 function changeLink(id) {
   const link = links[id];
   if (link) {
@@ -174,46 +158,8 @@ function changeLink(id) {
       window.open(link.url, '_blank'); // ユーザーが確認した場合、リンクを開く
     }
   }
-}*/
-function changeLink(id) {
-  const link = links[id];
-  if (link) {
-    const videoId = link.url.split('v=')[1];
-    const apiKey = 'AIzaSyAB_eMk1rBDeKGuahQgDAweiKVvt2dtiX0'; // あなたのAPIキーを入力
-    const apiUrl = https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet;
-
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const title = data.items[0].snippet.title; // タイトルを取得
-        document.getElementById('modalMessage').innerText = このリンクを開いてもよろしいですか？\nタイトル: ${title};
-        document.getElementById('confirmationModal').style.display = 'block'; // モーダルを表示
-        document.body.style.overflow = 'hidden'; // スクロールを禁止
-
-        // 確認ボタンの処理
-        document.getElementById('confirmButton').onclick = function() {
-          window.open(link.url, '_blank'); // リンクを開く
-          document.getElementById('confirmationModal').style.display = 'none'; // モーダルを非表示
-          document.body.style.overflow = 'auto'; // スクロールを再度有効に
-        };
-
-        // キャンセルボタンの処理
-        document.getElementById('cancelButton').onclick = function() {
-          document.getElementById('confirmationModal').style.display = 'none'; // モーダルを非表示
-          document.body.style.overflow = 'auto'; // スクロールを再度有効に
-        };
-      })
-      .catch(error => {
-        console.error('Error fetching YouTube video title:', error);
-        alert('タイトルの取得に失敗しました。');
-      });
-  }
 }
+
 function createTable() {
   if (tableCreated) return; // すでにテーブルが作成されている場合は何もしない
   tableCreated = true; // テーブル作成フラグを立てる
@@ -260,30 +206,30 @@ function createTable() {
 
 
 
-
-window.onload = function() {
+function displayText() {
   const loader = document.querySelector('.loader');
   const menu = document.querySelector('.menu');
   const loaderVideo = document.getElementById('loaderVideo');
 
   loader.style.display = 'block'; // ローダーを表示
-  menu.style.display = 'none'; // メニューを非表示にする
+  menu.style.display = 'none';// ローダーを表示
   document.body.style.overflow = 'hidden'; // スクロールを禁止
-
   // iPhone対応のため再生を明示的に要求
   loaderVideo.play().catch(err => {
     console.warn("動画の自動再生に失敗:", err);
   });
-
-  // 動画が終了したときに発火するイベントリスナーを設定
-  loaderVideo.addEventListener('ended', function() {
+  loaderVideo.onended = function() {
     loader.style.display = 'none'; // ローダーを非表示にする
     document.body.style.overflow = 'auto'; // スクロールを再度有効に
     createTable(); // テーブルを作成
-  });
-};
-  </script>
+  };
+}
 
+
+    window.onload = function() {
+      displayText();
+    }
+  </script>
 </head>
 <body>
     <input type="checkbox" id="menu" />
@@ -301,11 +247,6 @@ window.onload = function() {
             <li><a href="./life.html">ライフガード</a></li>
         </ul>
     </nav>
-  <div id="confirmationModal">
-  <p id="modalMessage"></p>
-  <button id="confirmButton">はい</button>
-  <button id="cancelButton">キャンセル</button>
-</div>
 <div class="loader"> 
   <video class="loader-video" autoplay muted playsinline id="loaderVideo">
     <source src="image/load2.mp4" type="video/mp4">
