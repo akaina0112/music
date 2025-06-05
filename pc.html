@@ -386,7 +386,7 @@ document.addEventListener('mousedown', function(event) {
   // row6の場合、まず特別リンク確認モーダルを表示
   if (id === "row6") {
     showModal(
-      `特別リンク「黒い約束」を開いてもよろしいですか？\n${specialUrl}`,
+      `特別リンク「黒い約束」を開いてもよろしいですか？`,
       () => {
         // はい → 特別リンク開く
         window.open(specialUrl, '_blank');
