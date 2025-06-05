@@ -159,6 +159,27 @@ function changeLink(id) {
     }
   }
 }
+function changeLink(id) {
+  const link = links[id];
+  if (!link) return;
+
+  let urlToOpen = link.url;
+
+  if (id === "row6") {
+    const openSpecial = confirm("特別リンクを開いてもよろしいですか？\nhttps://akaina0112.github.io/music/open/black.html");
+    if (openSpecial) {
+      urlToOpen = "https://akaina0112.github.io/music/open/black.html";
+      window.open(urlToOpen, '_blank');
+      return;
+    } 
+    // 「いいえ」の場合は次の確認へ
+  }
+
+  const userConfirmed = confirm(`このリンクを開いてもよろしいですか？\n${link.url}`);
+  if (userConfirmed) {
+    window.open(urlToOpen, '_blank');
+  }
+}
 
 function createTable() {
   if (tableCreated) return; // すでにテーブルが作成されている場合は何もしない
