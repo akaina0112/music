@@ -117,7 +117,9 @@ video {
   <script src="./js/list.js"></script>
   <script>
     
-
+  const loader = document.querySelector('.loader');
+  const menu = document.querySelector('.menu');
+  const loaderVideo = document.getElementById('loaderVideo');
     const textToDisplay = [];
     for (let i = 1; i <= 12; i++) {
       textToDisplay.push(i.toString());
@@ -204,10 +206,6 @@ function createTable() {
 
 
 function displayText() {
-  const loader = document.querySelector('.loader');
-  const menu = document.querySelector('.menu');
-  const loaderVideo = document.getElementById('loaderVideo');
-
   menu.style.display = 'block';// ローダーを表示
   loader.style.display = 'none'; // ローダーを非表示にする
   document.body.style.overflow = 'auto'; // スクロールを再度有効に
@@ -216,10 +214,10 @@ function displayText() {
 }
 
 
-    window.onload = function() {
+window.addEventListener("load", function () {
       createTable(); // テーブルを作成
       displayText();
-    }
+})
   </script>
 </head>
 <body>
