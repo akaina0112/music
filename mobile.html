@@ -208,22 +208,16 @@ function displayText() {
   const menu = document.querySelector('.menu');
   const loaderVideo = document.getElementById('loaderVideo');
 
-  loader.style.display = 'block'; // ローダーを表示
-  menu.style.display = 'none';// ローダーを表示
-  document.body.style.overflow = 'hidden'; // スクロールを禁止
-  // iPhone対応のため再生を明示的に要求
-  loaderVideo.play().catch(err => {
-    console.warn("動画の自動再生に失敗:", err);
-  });
-  loaderVideo.onended = function() {
-    loader.style.display = 'none'; // ローダーを非表示にする
-    document.body.style.overflow = 'auto'; // スクロールを再度有効に
-    createTable(); // テーブルを作成
-  };
+  menu.style.display = 'block';// ローダーを表示
+  loader.style.display = 'none'; // ローダーを非表示にする
+  document.body.style.overflow = 'auto'; // スクロールを再度有効に
+  loaderVideo.style.display = 'none'; // ローダーを表示
+    
 }
 
 
     window.onload = function() {
+      createTable(); // テーブルを作成
       displayText();
     }
   </script>
